@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 10:54:34 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/03 14:40:06 by jsamardz         ###   ########.fr       */
+/*   Created: 2024/09/03 12:08:51 by jsamardz          #+#    #+#             */
+/*   Updated: 2024/09/03 14:39:07 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(int argc, char **argv)
+void	init(t_data *data)
 {
-	t_data	data;
+	t_map	*map;
 
-	if (argc != 2)
-		error_exit("Error: incorect arguments");
-	init(&data);
-	read_map(&data, argv);
-	return (0);
+	map = (t_map *)malloc(sizeof(t_map));
+	if (map == NULL)
+	{
+		free(map);
+		error_exit("Error: failed to allocate memory for map");
+	}
+	map->no = NULL;
+	map->so = NULL;
+	map->ea = NULL;
+	map->we = NULL;
+	map->f = NULL;
+	map->c = NULL;
+	map->map = NULL;
+	data->mlx = NULL;
+	data->win = NULL;
+	data->player_x = 0;
+	data->player_y = 0;
+	data->grid = NULL;
+	data->map = map;
 }

@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 10:54:34 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/03 14:40:06 by jsamardz         ###   ########.fr       */
+/*   Created: 2024/09/03 12:26:38 by jsamardz          #+#    #+#             */
+/*   Updated: 2024/09/03 12:27:35 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(int argc, char **argv)
+void	error_exit(char *s)
 {
-	t_data	data;
-
-	if (argc != 2)
-		error_exit("Error: incorect arguments");
-	init(&data);
-	read_map(&data, argv);
-	return (0);
+	ft_printf("%s\n", s);
+	exit(EXIT_FAILURE);
 }

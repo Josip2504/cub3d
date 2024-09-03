@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:54:51 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/03 11:01:28 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:28:35 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,35 @@
 # include "../libft/libft.h"
 # include <unistd.h>
 # include <stdio.h>
+
+typedef struct	t_map
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*f;
+	char	*c;
+	char	**map;
+}	t_map;
+
+typedef struct	s_data
+{
+	void	*mlx;
+	void	*win;
+	int		player_x;
+	int		player_y;
+	char	**grid;
+	t_map	*map;
+}	t_data;
+
+// utils.c
+void	error_exit(char *s);
+
+// init.c
+void	init(t_data *data);
+
+// read_map.c
+void	read_map(t_data *data, char **argv);
 
 #endif
