@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:15:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/03 14:17:03 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/04 22:43:37 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,60 @@ static int	correct_arg(const char *name)
 	return (res);
 }
 
+static void	store_data(t_data *data, char *line, int flag)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == 32 || line[i] == 9)
+		i++;
+	if (line[i] == 'N' && line[i + 1] == 'O')
+		data->map->no = strdup(line);
+	else if (line[i] == 'S' && line[i + 1] == 'O')
+		data->map->so = strdup(line);
+	else if (line[i] == 'W' && line[i + 1] == 'E')
+		data->map->we = strdup(line);
+	else if (line[i] == 'E' && line[i + 1] == 'A')
+		data->map->ea = strdup(line);
+	else if (line[i] == 'F')
+		data->map->f = strdup(line);
+	else if (line[i] == 'C')
+		data->map->c = strdup(line);
+	else if (line[i] == '\n')
+		flag = 0;
+	else
+		flag = 1;
+}
+
 void	read_map(t_data *data, char **argv)
 {
 	int		fd;
-	int		count;
 	char	*line;
+	int		flag;
 
-	count = 0;
 	if (!correct_arg(argv[1]))
 		error_exit("Error: Argument must be .cub file");
 	fd = open((argv[1]), O_RDONLY);
 	if (fd < 0)
 		error_exit("Error: Opeining map, check does map exists");
 	line = get_next_line(fd);
+	flag = 0;
 	while (line != NULL)
 	{
-		count++;
+		if (flag == 0)
+			store_data(data, line, flag);
+		if (flag == 1)
+		{
+			while (line != NULL)
+			{
+				//todo store map
+			}
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	printf("%d", count);
-	data->player_x = 2;
+
+	// you need to free each strdup
+
 }

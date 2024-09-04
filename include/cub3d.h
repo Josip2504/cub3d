@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:54:51 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/03 14:28:35 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/04 22:00:15 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ typedef struct	t_map
 	char	*f;
 	char	*c;
 	char	**map;
+	char	*rows;
+	int		rows_c;
+	int		cols_c;
 }	t_map;
 
 typedef struct	s_data
@@ -34,7 +37,6 @@ typedef struct	s_data
 	void	*win;
 	int		player_x;
 	int		player_y;
-	char	**grid;
 	t_map	*map;
 }	t_data;
 
