@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:15:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/04 22:43:37 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/05 13:28:34 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	correct_arg(const char *name)
 	return (res);
 }
 
-static void	store_data(t_data *data, char *line, int flag)
+static int	store_data(t_data *data, char *line, int flag)
 {
 	int	i;
 
@@ -49,8 +49,22 @@ static void	store_data(t_data *data, char *line, int flag)
 		data->map->c = strdup(line);
 	else if (line[i] == '\n')
 		flag = 0;
-	else
+	else if (line[i] == '1' || line[i] == '0' || line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W')
 		flag = 1;
+	return (flag);
+}
+
+static void	map_size(t_data *data, char *line)
+{
+	int	temp_len;
+
+	temp_len = 0;
+	if (!data->map->no || !data->map->ea || !data->map->we || !data->map->so || !data->map->f || !data->map->c)
+		error_exit("Error: Missing textures or colors");
+	data->map->rows_c++;
+	temp_len = (int)ft_strlen(line);
+	if (temp_len >= data->map->cols_c)
+		data->map->cols_c = temp_len;
 }
 
 void	read_map(t_data *data, char **argv)
@@ -64,24 +78,16 @@ void	read_map(t_data *data, char **argv)
 	fd = open((argv[1]), O_RDONLY);
 	if (fd < 0)
 		error_exit("Error: Opeining map, check does map exists");
-	line = get_next_line(fd);
 	flag = 0;
+	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		if (flag == 0)
-			store_data(data, line, flag);
+			flag = store_data(data, line, flag);
 		if (flag == 1)
-		{
-			while (line != NULL)
-			{
-				//todo store map
-			}
-		}
+			map_size(data, line);
 		free(line);
 		line = get_next_line(fd);
 	}
-	close(fd);
-
-	// you need to free each strdup
-
+	close(fd); // you have to free strdups
 }
