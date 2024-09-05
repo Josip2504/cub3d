@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:08:51 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/04 22:01:16 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:47:31 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	init(t_data *data)
 	data->map = map;
 	data->map->cols_c = 0;
 	data->map->rows_c = 0;
-	data->map->rows = NULL;
+	data->map->arg_c = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:15:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/05 13:28:34 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:31:48 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static int	store_data(t_data *data, char *line, int flag)
 		flag = 0;
 	else if (line[i] == '1' || line[i] == '0' || line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W')
 		flag = 1;
+	data->map->arg_c++;
 	return (flag);
 }
 
@@ -64,7 +65,7 @@ static void	map_size(t_data *data, char *line)
 	data->map->rows_c++;
 	temp_len = (int)ft_strlen(line);
 	if (temp_len >= data->map->cols_c)
-		data->map->cols_c = temp_len;
+		data->map->cols_c = temp_len;		//here is posible to check is the map valid in terms of empty lines
 }
 
 void	read_map(t_data *data, char **argv)

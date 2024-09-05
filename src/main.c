@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:54:34 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/05 13:25:57 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:27:39 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,22 @@ int	main(int argc, char **argv)
 		error_exit("Error: incorect arguments");
 	init(&data);
 	read_map(&data, argv);
+	store_map(&data, argv);
 
 
-	// printf("%s", data.map->no);
-	// printf("%s", data.map->so);
-	// printf("%s", data.map->we);
-	// printf("%s", data.map->ea);
-	// printf("%s", data.map->f);
-	// printf("%s", data.map->c);
-
-	printf("num of rows = %d", data.map->rows_c);
+	//-----TEST----------------
+	printf("%s", data.map->no);
+	printf("%s", data.map->so);
+	printf("%s", data.map->we);
+	printf("%s", data.map->ea);
+	printf("%s", data.map->f);
+	printf("%s", data.map->c);
 	printf("\n");
-	printf("max chars = %d", data.map->cols_c);
-
-	// printf("%c", data.map->map[0][0]);
+	for (int i = 0; i < data.map->rows_c; i++)
+	{
+		printf("%s", data.map->map[i]);
+	}
+	//-------------------------
 
 	return (0);
 }

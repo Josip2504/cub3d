@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:54:51 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/04 22:00:15 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:47:21 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ typedef struct	t_map
 	char	*f;
 	char	*c;
 	char	**map;
-	char	*rows;
 	int		rows_c;
 	int		cols_c;
+	int		arg_c;
 }	t_map;
 
 typedef struct	s_data
@@ -48,5 +48,8 @@ void	init(t_data *data);
 
 // read_map.c
 void	read_map(t_data *data, char **argv);
+
+// store_map.c
+void	store_map(t_data *data, char **argv);
 
 #endif
