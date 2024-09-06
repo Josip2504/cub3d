@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:54:51 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/05 14:47:21 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/06 15:00:58 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void	read_map(t_data *data, char **argv);
 
 // store_map.c
 void	store_map(t_data *data, char **argv);
+void	valid_map(t_data *data);
 
 #endif

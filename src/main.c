@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:54:34 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/05 15:27:39 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/06 15:36:37 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ int	main(int argc, char **argv)
 		error_exit("Error: incorect arguments");
 	init(&data);
 	read_map(&data, argv);
-	store_map(&data, argv);
+	store_map(&data, argv);		//map is storet to **map, next function has to check is the map valid
+	valid_map(&data);
 
 
-	//-----TEST----------------
+	//-----TEST---------------- 
 	printf("%s", data.map->no);
 	printf("%s", data.map->so);
 	printf("%s", data.map->we);
@@ -35,7 +36,12 @@ int	main(int argc, char **argv)
 	{
 		printf("%s", data.map->map[i]);
 	}
+	printf("\n");
+	// printf("%d", data.map->map[6][31]);
 	//-------------------------
+
+
 
 	return (0);
 }
+
