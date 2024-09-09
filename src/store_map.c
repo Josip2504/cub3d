@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 13:36:04 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/06 15:41:57 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:08:25 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,28 @@ void	store_map(t_data *data, char **argv)
 	close(fd);
 }
 
+static void	check_wall(t_data *data, int i, int j)
+{
+	char	**c;
+
+	c = data->map->map;
+	if (i == 0 && (ft_strchr("0NEWS", c[i][j]) != NULL))
+		error_exit("Error: invalid map");
+	if (i == (data->map->rows_c - 1) && (ft_strchr("0NEWS", c[i][j]) != NULL))
+		error_exit("Error: invalid map");
+	if (i != 0 && i != (data->map->rows_c - 1))
+	{
+		if ((ft_strchr("10NEWS", c[i][j-1]) == NULL))
+			error_exit("Error: invalid map");
+		if ((ft_strchr("10NEWS", c[i][j+1]) == NULL))
+			error_exit("Error: invalid map");
+		if ((ft_strchr("10NEWS", c[i-1][j]) == NULL))
+			error_exit("Error: invalid map");
+		if ((ft_strchr("10NEWS", c[i+1][j]) == NULL))
+			error_exit("Error: invalid map");
+	}
+}
+
 void	valid_map(t_data *data)
 {
 	int	i;
@@ -78,10 +100,10 @@ void	valid_map(t_data *data)
 			while (data->map->map[i][j] == ' ')
 				j++;
 			if (!(ft_strchr("10NEWS\n", data->map->map[i][j])))
-			{
-				printf("ero pos %d %d\n%d\n", i, j, data->map->map[i][j]);
 				error_exit("Error: invalid map");		// potential free leak
-			}
+			if (data->map->map[i][j] == '0' || data->map->map[i][j] == 'N' || data->map->map[i][j] == 'E'
+				|| data->map->map[i][j] == 'W' || data->map->map[i][j] == 'S')
+				check_wall(data, i, j);
 			j++;
 		}
 		i++;

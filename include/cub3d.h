@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:54:51 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/06 15:00:58 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/09 12:29:49 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/libft.h"
 # include <unistd.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 typedef struct	t_map
 {
