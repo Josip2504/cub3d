@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:54:51 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/09 12:29:49 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:24:57 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct	s_data
 {
 	void	*mlx;
 	void	*win;
+	char	player;
+	int		player_count;
 	int		player_x;
 	int		player_y;
 	t_map	*map;

@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:54:34 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/09 22:14:45 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:59:08 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ int	main(int argc, char **argv)
 
 
 	printf("ok");
-
-	// wtf.cub acting like wtf
-
 
 	//-----TEST---------------- 
 	// printf("%s", data.map->no);

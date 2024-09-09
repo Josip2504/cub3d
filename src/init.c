@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:08:51 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/06 15:01:01 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:25:05 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	init(t_data *data)
 	data->win = NULL;
 	data->player_x = 0;
 	data->player_y = 0;
+	data->player = '\0';
+	data->player_count = 0;
 	data->map = map;
 	data->map->cols_c = 0;
 	data->map->rows_c = 0;
