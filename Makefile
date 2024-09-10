@@ -1,49 +1,53 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/09/03 10:47:42 by jsamardz          #+#    #+#              #
-#    Updated: 2024/09/05 13:36:24 by jsamardz         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 SRC_DIR = src
 OBJ_DIR = obj
-SRC = $(addprefix src/, main.c init.c read_map.c utils.c store_map.c)
-OBJ = $(SRC:src/%.c=obj/%.o)
+
+SRC = $(wildcard $(SRC_DIR)/**/*.c $(SRC_DIR)/*.c)
+
+OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+	  
 LIBFT_PATH = libft
 LIBFT_H = -L$(LIBFT_PATH) -lft
-INCLUDE = -Iinclude -I$(LIBFT_PATH)
+INCLUDE = -Iinclude -I$(LIBFT_PATH) -I$(MLXDIR)/include
+
+MLXDIR = lib/MLX42
+MLX = -L$(MLXDIR)/build -lMLX42 -lglfw -lm
 
 all: $(NAME)
+
+$(NAME): $(OBJ) libft/libft.a $(MLXDIR)/build/libmlx42.a
+	@$(CC) $(OBJ) $(LIBFT_H) $(MLX) -o $(NAME)
+	@echo "Compiling $(NAME) completed successfully."
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-$(NAME): $(OBJ) libft/libft.a
-	@$(CC) $(OBJ) $(LIBFT_H) -o $(NAME)
-	@echo "Compiling\n$(NAME) compiled successul"
-
 libft/libft.a:
-	@make -C libft
+	@$(MAKE) -C $(LIBFT_PATH)
 
 clean:
 	@rm -f $(OBJ)
-	@make -C libft clean
-	@echo "Cleaning"
+	@$(MAKE) -C $(LIBFT_PATH) clean
+	@echo "Cleaning object files and libft..."
 
 fclean: clean
 	@rm -f $(NAME)
-	@make -C libft fclean
-	@echo "Removing $(NAME)"
+	@$(MAKE) -C $(LIBFT_PATH) fclean
+	@rm -f $(MLXDIR)/build/libmlx42.a
+	@echo "Full clean complete."
 
 re: fclean all
 
-.PHONY: all clean fclean re obj
+$(MLXDIR)/build/libmlx42.a:
+	@if [ ! -f "$(MLXDIR)/build/libmlx42.a" ]; then \
+		echo "Cloning and building MLX42..."; \
+		git clone https://github.com/codam-coding-college/MLX42.git $(MLXDIR); \
+		cmake -B $(MLXDIR)/build $(MLXDIR); \
+		cmake --build $(MLXDIR)/build -j4; \
+		echo "MLX42 successfully built."; \
+	fi
+
+.PHONY: all clean fclean re
