@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/13 16:39:48 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:37:36 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_data
 	int		height_map;
 	int		ceil[3];
 	int		floor[3];
+	t_map	*map;
 }	t_data;
 
 typedef struct s_game
@@ -97,7 +98,6 @@ typedef struct	s_mlx
 	t_player	*ply;
 	t_texture	*textur;
 }	t_mlx;
-
 
 typedef struct s_wall_params
 {
@@ -123,9 +123,6 @@ void	player_init(t_mlx *mlx);
 void	free_dbl_char(char **array);
 void	free_ptr(void *ptr);
 void	free_textures(t_texture *tex);
-// void start_game(t_game *game, char orientation);
-// void	move_player(t_game *game);
-
 // utils.c
 void	error_exit(char *s);
 

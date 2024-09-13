@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/13 16:52:23 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:33:50 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ void	store_player(t_map *map)
 	}
 }
 
+static int	help(char *s, int i)
+{
+	while (s[i++])
+	{
+		if (s[i] == 32 || s[i] == 9 || s[i] == '\0')
+			break ;
+	}
+	return (i);
+}
+
 char	*trim(char *s)
 {
 	int		i;
@@ -47,17 +57,17 @@ char	*trim(char *s)
 	res = NULL;
 	while (s[i] == 32 || s[i] == 9)
 		i++;
-	while (s[i++])
-	{
-		if (s[i] == 32 || s[i] == 9)
-			break ;
-	}
+	i = help(s, i);
 	while (s[i] == 32 || s[i] == 9)
 		i++;
+	if (s[i] == '\0' || s[i] == '\n')
+		error_exit("Error: Missing textures");
 	j = i;
 	while (s[i++])
 		len++;
 	res = ft_calloc(len, sizeof(char *));
+	if (!res)
+		error_exit("Error: malloc");
 	i = 0;
 	while (s[j])
 		res[i++] = s[j++];

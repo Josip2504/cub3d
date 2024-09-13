@@ -6,7 +6,7 @@
 /*   By: blatifat <blatifat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 06:33:59 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/12 07:08:58 by blatifat         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:49:57 by blatifat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	load_texture(t_mlx *mlx)
 {
-	mlx->textur->east = mlx_load_png(mlx->data->map2d[0]);
-	mlx->textur->south = mlx_load_png(mlx->data->map2d[1]);
-	mlx->textur->north = mlx_load_png(mlx->data->map2d[2]);
-	mlx->textur->west = mlx_load_png(mlx->data->map2d[3]);
+	mlx->textur->east = mlx_load_png(mlx->data->map->ea);
+	mlx->textur->south = mlx_load_png(mlx->data->map->so);
+	mlx->textur->north = mlx_load_png(mlx->data->map->no);
+	mlx->textur->west = mlx_load_png(mlx->data->map->we);
 
 	if (!mlx->textur->east || !mlx->textur->south
 		|| !mlx->textur->north || !mlx->textur->west)
