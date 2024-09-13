@@ -6,79 +6,75 @@
 /*   By: blatifat <blatifat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:50 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/07 06:29:16 by blatifat         ###   ########.fr       */
+/*   Updated: 2024/09/12 06:38:32 by blatifat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	front_black_mvt(t_game *game, double move_step)
+void	rotate_player(t_mlx *mlx)
 {
-	double	new_x;
-	double	new_y;
-
-	new_x = game->player->player_x + cos(game->player->angle) * move_step;
-	new_y = game->player->player_y + sin(game->player->angle) * move_step;
-	if (!wall_hit(new_x, new_y, game))
+	if (mlx->ply->rotation == 1)
 	{
-		game->player->player_x = new_x;
-		game->player->player_y = new_y;
+		mlx->ply->angle += ROTATION_SPEED;
+		if (mlx->ply->angle > 2 * M_PI)
+			mlx->ply->angle -= 2 * M_PI;
+	}
+	else if (mlx->ply->rotation == -1)
+	{
+		mlx->ply->angle -= ROTATION_SPEED;
+		if (mlx->ply->angle < 0)
+			mlx->ply->angle += 2 * M_PI;
 	}
 }
 
-void	left_right_mvt(t_game *game, double step_move)
+void	move_player(t_mlx *mlx, double move_x, double move_y)
 {
-	double	new_x;
-	double	new_y;
+	int		map_grid_x;
+	int		map_grid_y;
 
-	new_x = game->player->player_x
-		+ cos(game->player->angle + M_PI_2) * step_move;
-	new_y = game->player->player_y
-		+ sin(game->player->angle + M_PI_2) * step_move;
-	if (!wall_hit(new_x, new_y, game))
+	map_grid_x = (int)(mlx->ply->player_x + move_x) / TILE_SIZE;
+	map_grid_y = (int)(mlx->ply->player_y + move_y) / TILE_SIZE;
+	if (mlx->data->map2d[map_grid_y][map_grid_x] != '1')
 	{
-		game->player->player_x = new_x;
-		game->player->player_y = new_y;
+		mlx->ply->player_x += move_x;
+		mlx->ply->player_y += move_y;
 	}
 }
 
-void	rotation_mvt(t_game *game, double rotation_angle)
+void	process_player_movement(t_mlx *mlx)
 {
-	game->player->angle += rotation_angle;
-	game->player->angle = normaliz_angle(game->player->angle);
+	double	move_x;
+	double	move_y;
+
+	move_x = 0;
+	move_y = 0;
+	if (mlx->ply->left_right == 1)
+	{
+		move_x = -sin(mlx->ply->angle) * PLAYER_SPEED;
+		move_y = cos(mlx->ply->angle) * PLAYER_SPEED;
+	}
+	else if (mlx->ply->left_right == -1)
+	{
+		move_x = sin(mlx->ply->angle) * PLAYER_SPEED;
+		move_y = -cos(mlx->ply->angle) * PLAYER_SPEED;
+	}
+	if (mlx->ply->up_down == 1)
+	{
+		move_x = cos(mlx->ply->angle) * PLAYER_SPEED;
+		move_y = sin(mlx->ply->angle) * PLAYER_SPEED;
+	}
+	else if (mlx->ply->up_down == -1)
+	{
+		move_x = -cos(mlx->ply->angle) * PLAYER_SPEED;
+		move_y = -sin(mlx->ply->angle) * PLAYER_SPEED;
+	}
+	move_player(mlx, move_x, move_y);
 }
 
-void	input_handler(mlx_key_data_t keydata, void *param)
+void	hook_mvt(t_mlx *mlx)
 {
-	t_game	*game;
-
-	game = (t_game *)param;
-	if (keydata.key == MLX_KEY_W)
-		front_black_mvt(game, PLAYER_SPEED);
-	else if (keydata.key == MLX_KEY_S)
-		front_black_mvt(game, -PLAYER_SPEED);
-	else if (keydata.key == MLX_KEY_A)
-		left_right_mvt(game, -PLAYER_SPEED);
-	else if (keydata.key == MLX_KEY_D)
-		left_right_mvt(game, PLAYER_SPEED);
-	else if (keydata.key == MLX_KEY_LEFT)
-		rotation_mvt(game, -ROTATION_SPEED);
-	else if (keydata.key == MLX_KEY_RIGHT)
-		rotation_mvt(game, ROTATION_SPEED);
+	rotate_player(mlx);
+	process_player_movement(mlx);
 }
 
-/* void game_loop(void *game_ptr)
-{
-    t_game *game = (t_game *)game_ptr;
-
-    // Mise à jour de la position du joueur
-    move_player(game);
-    rotation_mvt(game);
-
-    // Raycasting et rendu après déplacement
-    rays_cast(game, game->mlx);
-
-    // Mise à jour de l'affichage (s'il y a des images à afficher)
-    mlx_image_to_window(game->mlx->mlx_ptr, game->mlx->image, 0, 0);
-}
- */

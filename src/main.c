@@ -5,50 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 10:54:34 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/10 15:24:02 by jsamardz         ###   ########.fr       */
+/*   Created: 2024/09/02 22:14:25 by blatifat          #+#    #+#             */
+/*   Updated: 2024/09/13 16:53:55 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
-
-// void	leaks(void)
-// {
-// 	system("leaks cub3d");
-// }
+#include "../include/cub3d.h"
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_map	map;
+	t_data	*data;
 
 	if (argc != 2)
 		error_exit("Error: incorect arguments");
-	init(&data);
-	read_map(&data, argv);
-	store_map(&data, argv);
-	valid_map(&data);
-
-
-	printf("ok");
-	//-----TEST---------------- 
-	// printf("%s", data.map->no);
-	// printf("%s", data.map->so);
-	// printf("%s", data.map->we);
-	// printf("%s", data.map->ea);
-	// printf("%s", data.map->f);
-	// printf("%s", data.map->c);
-	// printf("\n");
-	// for (int i = 0; i < data.map->map_height; i++)
-	// {
-	// 	printf("%s", data.map->map2d[i]);
-	// }
-	// printf("\n");
-	// printf("\n");
-	// printf("%d", data.map->map[4][0]);
-	//-------------------------
-
-
-
+	init(&map);
+	read_map(&map, argv);
+	store_map(&map, argv);
+	valid_map(&map);
+	store_player(&map);
+	printf("Map parsing ok\n");
+	data = transfer_data(&map);
+	printf("transfer ok so far\n");
+	init_game(data);
 	return (0);
 }
-

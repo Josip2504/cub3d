@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:15:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/10 15:11:17 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:53:12 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	correct_arg(const char *name)
 	return (res);
 }
 
-static int	store_data(t_data *data, char *line, int flag)
+static int	store_data(t_map *map, char *line, int flag)
 {
 	int	i;
 
@@ -36,39 +36,39 @@ static int	store_data(t_data *data, char *line, int flag)
 	while (line[i] == 32 || line[i] == 9)
 		i++;
 	if (line[i] == 'N' && line[i + 1] == 'O')
-		data->map->no = strdup(line);
+		map->no = trim(line);
 	else if (line[i] == 'S' && line[i + 1] == 'O')
-		data->map->so = strdup(line);
+		map->so = trim(line);
 	else if (line[i] == 'W' && line[i + 1] == 'E')
-		data->map->we = strdup(line);
+		map->we = trim(line);
 	else if (line[i] == 'E' && line[i + 1] == 'A')
-		data->map->ea = strdup(line);
+		map->ea = trim(line);
 	else if (line[i] == 'F')
-		data->map->f = strdup(line);
+		map->f = strdup(line);
 	else if (line[i] == 'C')
-		data->map->c = strdup(line);
+		map->c = strdup(line);
 	else if (line[i] == '\n')
 		flag = 0;
 	else if (line[i] == '1' || line[i] == '0' || line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W')
 		flag = 1;
-	data->map->arg_c++;
+	map->arg_c++;
 	return (flag);
 }
 
-static void	map_size(t_data *data, char *line)
+static void	map_size(t_map *map, char *line)
 {
 	int	temp_len;
 
 	temp_len = 0;
-	if (!data->map->no || !data->map->ea || !data->map->we || !data->map->so || !data->map->f || !data->map->c)
+	if (!map->no || !map->ea || !map->we || !map->so || !map->f || !map->c)
 		error_exit("Error: Missing textures or colors");
-	data->map->map_height++;
+	map->map_height++;
 	temp_len = (int)ft_strlen(line);
-	if (temp_len >= data->map->map_width)
-		data->map->map_width = temp_len;		//here is posible to check is the map valid in terms of empty lines
+	if (temp_len >= map->map_width)
+		map->map_width = temp_len;
 }
 
-void	read_map(t_data *data, char **argv)
+void	read_map(t_map *map, char **argv)
 {
 	int		fd;
 	char	*line;
@@ -84,11 +84,11 @@ void	read_map(t_data *data, char **argv)
 	while (line != NULL)
 	{
 		if (flag == 0)
-			flag = store_data(data, line, flag);
+			flag = store_data(map, line, flag);
 		if (flag == 1)
-			map_size(data, line);
+			map_size(map, line);
 		free(line);
 		line = get_next_line(fd);
 	}
-	close(fd); // you have to free strdups
+	close(fd); // you have to free strdupss
 }

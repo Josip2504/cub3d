@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/jsamardz/Desktop/github_cub3d/src",
+      "program": "/Users/jsamardz/Desktop/github_cub3d/src/build/Debug/outDebug"
+    }
+  ]
+}
