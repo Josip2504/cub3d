@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/13 17:37:36 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:29:35 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	free_ptr(void *ptr);
 void	free_textures(t_texture *tex);
 // utils.c
 void	error_exit(char *s);
+int		ft_isspace(char c);
 
 // init.c
 void	init(t_map *map);

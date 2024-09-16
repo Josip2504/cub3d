@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:14:25 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/13 17:37:43 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:12:22 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ int	main(int argc, char **argv)
 	store_player(&map);
 	printf("Map parsing ok\n");
 	data = transfer_data(&map);
-	printf("%s", map.no);
-	printf("%s", map.we);
-	printf("%s", map.so);
-	printf("%s", map.ea);
 	printf("transfer ok so far\n");
 	init_game(data);
 	return (0);

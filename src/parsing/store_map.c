@@ -6,14 +6,11 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 13:36:04 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/13 15:15:10 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:13:43 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-
-// check every error_exit for leaks
 
 static void	wloop(t_map *map, char *line, int i, int fd)
 {
@@ -24,7 +21,7 @@ static void	wloop(t_map *map, char *line, int i, int fd)
 	{
 		map->map2d[i] = malloc((map->map_width + 1) * sizeof(char));
 		if (!map->map2d[i])
-			error_exit("Error: Map alloc fail");		// potential free leak
+			error_exit("Error: Map alloc fail");
 		j = 0;
 		while (line[j] != '\0')
 		{
@@ -61,7 +58,7 @@ void	store_map(t_map *map, char **argv)
 	}
 	map->map2d = malloc(map->map_height * sizeof(char *));
 	if (!map->map2d)
-		error_exit("Error: Map alloc fail");		// potential free leak
+		error_exit("Error: Map alloc fail");
 	line = get_next_line(fd);
 	wloop(map, line, i, fd);
 	close(fd);
@@ -98,7 +95,7 @@ static void	ft_if(t_map *map, int i, int j)
 		map->player = map->map2d[i][j];
 	}
 	if (!(ft_strchr("10NEWS\n", map->map2d[i][j])))
-		error_exit("Error: invalid map");		// potential free leak
+		error_exit("Error: invalid map");
 	if (map->map2d[i][j] == '0' || map->map2d[i][j] == 'N'
 		|| map->map2d[i][j] == 'E' || map->map2d[i][j] == 'W'
 		|| map->map2d[i][j] == 'S')

@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:15:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/13 16:53:12 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:29:23 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static int	store_data(t_map *map, char *line, int flag)
 		map->c = strdup(line);
 	else if (line[i] == '\n')
 		flag = 0;
-	else if (line[i] == '1' || line[i] == '0' || line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W')
+	else if (line[i] == '1' || line[i] == '0' || line[i] == 'S'
+		|| line[i] == 'N' || line[i] == 'E' || line[i] == 'W')
 		flag = 1;
 	map->arg_c++;
 	return (flag);
@@ -90,5 +91,5 @@ void	read_map(t_map *map, char **argv)
 		free(line);
 		line = get_next_line(fd);
 	}
-	close(fd); // you have to free strdupss
+	close(fd);
 }
