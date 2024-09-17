@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:26:38 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/16 13:16:14 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/17 14:24:50 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,58 @@ int	ft_isspace(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\n'
 		|| c == '\v' || c == '\f' || c == '\r');
+}
+
+void	my_sscanf(char *str, int *a, int *b, int *c)
+{
+	int		numbers[3];
+	int		i;
+	char	*ptr;
+
+	ptr = str;
+	i = 0;
+	numbers[0] = 0;
+	numbers[1] = 0;
+	numbers[2] = 0;
+	while (*ptr && i < 3)
+	{
+		while (*ptr && !ft_isdigit(*ptr))
+			ptr++;
+		while (*ptr && ft_isdigit(*ptr))
+		{
+			numbers[i] = numbers[i] * 10 + (*ptr - '0');
+			ptr++;
+		}
+		i++;
+	}
+	*a = numbers[0];
+	*b = numbers[1];
+	*c = numbers[2];
+}
+
+void	line_check(char *line)
+{
+	int	i;
+	int	c;
+
+	i = 0;
+	c = 0;
+	while (line[i])
+	{
+		while (ft_isspace(line[i]))
+			i++;
+		if (!ft_isdigit(line[i]) && !ft_isspace(line[i]) && line[i] != ',')
+			error_exit("Error: invalid color");
+		while (ft_isdigit(line[i++]))
+		{
+			if (!ft_isdigit(line[i]))
+			{
+				c++;
+				break ;
+			}
+		}
+		i++;
+	}
+	if (c != 3)
+		error_exit("Error: invalid number of colors");
 }

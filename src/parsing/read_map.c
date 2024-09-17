@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:15:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/16 12:29:23 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/17 12:33:57 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static int	store_data(t_map *map, char *line, int flag)
 	else if (line[i] == 'E' && line[i + 1] == 'A')
 		map->ea = trim(line);
 	else if (line[i] == 'F')
-		map->f = strdup(line);
+		map->f = trim(line);
 	else if (line[i] == 'C')
-		map->c = strdup(line);
+		map->c = trim(line);
 	else if (line[i] == '\n')
 		flag = 0;
 	else if (line[i] == '1' || line[i] == '0' || line[i] == 'S'

@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/16 13:28:12 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/17 14:29:33 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,41 +74,20 @@ char	*trim(char *s)
 	return (res);
 }
 
-void	ft_color(const char *str, int *numbers)
+static void	ft_color(t_map *map, t_data *data)
 {
-	char	temp[10];
-	int		i;
-	int		num_i;
-
-	i = 0;
-	num_i = 0;
-	while (ft_isspace(*str))
-		str++;
-	str++;
-	while (*str != '\0' && num_i < 3)
-	{
-		while (*str == ' ' || *str == ',' || *str == '\t')
-			str++;
-		i = 0;
-		while (ft_isdigit(*str) || *str == '-')
-			temp[i++] = *str++;
-		temp[i] = '\0';
-		numbers[num_i++] = ft_atoi(temp);
-	}
-	if ((numbers[0] < 0 || numbers[0] > 255)
-		|| (numbers[1] < 0 || numbers[1] > 255)
-		|| (numbers[2] < 0 || numbers[2] > 255))
-		error_exit("Error: Color number not correct");
+	line_check(map->f);
+	line_check(map->c);
+	my_sscanf(map->f, &data->floor[0], &data->floor[1], &data->floor[2]);
+	my_sscanf(map->c, &data->ceil[0], &data->ceil[1], &data->ceil[2]);
 }
 
 t_data	*transfer_data(t_map *map)
 {
 	int		i;
-	char	**f;
 	t_data	*dt;
 
 	i = 0;
-	f = NULL;
 	dt = calloc(1, sizeof(t_data));
 	dt->map2d = calloc(map->map_height, sizeof(char *));
 	while (i < map->map_height)
@@ -120,7 +99,6 @@ t_data	*transfer_data(t_map *map)
 	dt->ply_y = map->player_y;
 	dt->height_map = map->map_height;
 	dt->width_map = map->map_width - 1;
-	ft_color(map->f, dt->floor);
-	ft_color(map->c, dt->ceil);
+	ft_color(map, dt);
 	return (dt);
 }
