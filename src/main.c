@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:14:25 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/17 14:23:10 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:51:28 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ int	main(int argc, char **argv)
 	store_map(&map, argv);
 	valid_map(&map);
 	store_player(&map);
-	printf("Map parsing ok\n");
 	data = transfer_data(&map);
-	printf("transfer ok so far\n");
-	init_game(data);
+	init_game(data, &map);
 	return (0);
 }

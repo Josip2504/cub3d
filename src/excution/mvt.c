@@ -6,7 +6,7 @@
 /*   By: blatifat <blatifat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:50 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/12 06:38:32 by blatifat         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:56:42 by blatifat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ void	process_player_movement(t_mlx *mlx)
 void	hook_mvt(t_mlx *mlx)
 {
 	rotate_player(mlx);
-	process_player_movement(mlx);
+	// process_player_movement(mlx);
 }
 

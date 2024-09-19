@@ -6,30 +6,58 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:12:18 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/13 13:46:09 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:00:36 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	init_game(t_data *data)
+void initiation(t_mlx *mlx)
 {
-	t_mlx	mlx;
+	mlx->ply = malloc(sizeof(t_player));
+	mlx->ray = malloc(sizeof(t_ray));
+	mlx->textur = malloc(sizeof(t_texture));
+	mlx->data = NULL;
+	mlx->map = NULL;
+	mlx->imgage = NULL;
+	mlx->mlx_ptr = NULL;
+	mlx->textur->east = NULL;
+	mlx->textur->north = NULL;
+	mlx->textur->west = NULL;
+	mlx->textur->south = NULL;
+}
 
-	mlx.data = data;
-	mlx.ply = calloc(1, sizeof(t_player));
-	mlx.ray = calloc(1, sizeof(t_ray));
-	mlx.mlx_ptr = mlx_init(S_W, S_H, "Cub3D", 0);
-	if (mlx.mlx_ptr == NULL)
+void	init_game(t_data *data, t_map *map)
+{	
+	t_mlx *mlx = malloc(sizeof(t_mlx));  // Allocate memory here
+
+    if (!mlx)
+    {
+        printf("Memory allocation failed\n");
+        return;
+    }
+
+	initiation(mlx);
+	mlx->data = data;
+	mlx->mlx_ptr = mlx_init(S_W, S_H, "Cub3D", 0);
+	if (mlx->mlx_ptr == NULL)
 	{
 		printf("Failed to initialize MLX\n");
 		return ;
 	}
-	// game_init(&mlx);
-	player_init(&mlx);
-	mlx_loop_hook(mlx.mlx_ptr, &game_loop, &mlx);
-	mlx_key_hook(mlx.mlx_ptr, &mlx_key, &mlx);
-	mlx_loop(mlx.mlx_ptr);
+	load_texture(mlx, map);
+	// mlx_image_t* image = mlx_texture_to_image(mlx, mlx->textur->east);
+    // if (!image)
+    // {
+    //     fprintf(stderr, "Error creating image from texture\n");
+    //     mlx_delete_texture(mlx->textur);
+    //     mlx_terminate(mlx);
+    //     return EXIT_FAILURE;
+    // }
+	player_init(mlx, data);
+	mlx_loop_hook(mlx->mlx_ptr, &game_loop, &mlx);
+	mlx_key_hook(mlx->mlx_ptr, &mlx_key, &mlx);			// OK
+	mlx_loop(mlx->mlx_ptr);
 }
 
 /* void	init_game(t_data *dt)

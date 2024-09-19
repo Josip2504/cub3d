@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/17 14:29:33 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:52:28 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,14 @@ char	*trim(char *s)
 		error_exit("Error: malloc");
 	i = 0;
 	while (s[j])
-		res[i++] = s[j++];
+	{
+		if (s[j] == '\n')
+			res[i] = '\0';
+		else
+			res[i] = s[j];
+		i++;
+		j++;
+	}
 	return (res);
 }
 

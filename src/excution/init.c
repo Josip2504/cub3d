@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blatifat <blatifat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 06:33:59 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/13 16:49:57 by blatifat         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:51:14 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	load_texture(t_mlx *mlx)
-{
-	mlx->textur->east = mlx_load_png(mlx->data->map->ea);
-	mlx->textur->south = mlx_load_png(mlx->data->map->so);
-	mlx->textur->north = mlx_load_png(mlx->data->map->no);
-	mlx->textur->west = mlx_load_png(mlx->data->map->we);
-
+void	load_texture(t_mlx *mlx, t_map *map)
+{	
+	mlx->textur->east = mlx_load_png(map->ea);
+	mlx->textur->south = mlx_load_png(map->so);
+	mlx->textur->north = mlx_load_png(map->no);
+	mlx->textur->west = mlx_load_png(map->we);
 	if (!mlx->textur->east || !mlx->textur->south
 		|| !mlx->textur->north || !mlx->textur->west)
 	{
+		printf("Error: Failed to load textures\n");
 		free_game(mlx);
-		/* error(LOAD_TEXTURES); */
+		error(LOAD_TEXTURES);
 	}
 }
 
@@ -32,6 +32,11 @@ void	game_loop(void *param)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx *)param;
+	if (mlx->mlx_ptr == NULL)
+	{
+		printf("mlx_ptr is NULL\n");
+		return;
+	}
 	if (mlx->imgage != NULL)
 		mlx_delete_image(mlx->mlx_ptr, mlx->imgage);
 	mlx->imgage = mlx_new_image(mlx->mlx_ptr, S_W, S_H);
@@ -45,16 +50,16 @@ void	game_loop(void *param)
 	mlx_image_to_window(mlx->mlx_ptr, mlx->imgage, 0, 0);
 }
 
-
-void	player_init(t_mlx *mlx)
+void	player_init(t_mlx *mlx, t_data *data)
 {
-	mlx->ply->player_x = (mlx->data->ply_x * TILE_SIZE) + (TILE_SIZE / 2);
-	mlx->ply->player_y = (mlx->data->ply_y * TILE_SIZE) + (TILE_SIZE / 2);
+	printf("player position\n");
+	mlx->ply->player_x = (data->ply_x * TILE_SIZE) + (TILE_SIZE / 2);
+	mlx->ply->player_y = (data->ply_y * TILE_SIZE) + (TILE_SIZE / 2);
 	mlx->ply->fov = (FOV * M_PI) / 180;
 	mlx->ply->angle = M_PI;
 }
 
-void	game_init(t_mlx *mlx)
+/* void	game_init(t_mlx *mlx)
 {
 	*mlx = (t_mlx)
 	{
@@ -69,3 +74,4 @@ void	game_init(t_mlx *mlx)
 	mlx->textur->south = NULL;
 	mlx->textur->north = NULL;
 }
+ */

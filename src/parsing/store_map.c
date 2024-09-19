@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 13:36:04 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/16 13:13:43 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:28:22 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	store_map(t_map *map, char **argv)
 	}
 	map->map2d = malloc(map->map_height * sizeof(char *));
 	if (!map->map2d)
-		error_exit("Error: Map alloc fail");
+		error_exit("Error: Map alloc fail");		// potential free leak
 	line = get_next_line(fd);
 	wloop(map, line, i, fd);
 	close(fd);
