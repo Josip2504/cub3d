@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mvt.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blatifat <blatifat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:50 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/18 15:56:42 by blatifat         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:18:05 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ void	process_player_movement(t_mlx *mlx)
 void	hook_mvt(t_mlx *mlx)
 {
 	rotate_player(mlx);
-	// process_player_movement(mlx);
+	process_player_movement(mlx);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:12:18 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/23 17:08:12 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:48:55 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void initiation(t_mlx *mlx)
 	mlx->textur->north = NULL;
 	mlx->textur->west = NULL;
 	mlx->textur->south = NULL;
-	mlx->ply->rotation = 0;
-	mlx->ply->left_right = 0;
-	mlx->ply->up_down = 0;
-	mlx->ray->angle = 0;
-	mlx->ray->distance = 0;
-	mlx->ray->wall_flag = 0;
-	mlx->ray->index = 0;
+	// mlx->ply->rotation = 0;
+	// mlx->ply->left_right = 0;
+	// mlx->ply->up_down = 0;
+	// mlx->ray->angle = 0;
+	// mlx->ray->distance = 0;
+	// mlx->ray->wall_flag = 0;
+	// mlx->ray->index = 0;
 }
 
 void	init_game(t_data *data, t_map *map)
@@ -45,7 +45,7 @@ void	init_game(t_data *data, t_map *map)
 	}
 	initiation(mlx);
 	mlx->data = data;
-	mlx->mlx_ptr = mlx_init(S_W, S_H, "Cub3D", 0);
+	mlx->mlx_ptr = mlx_init(S_W, S_H, "Cub3D", true); 		//added true, was 0
 	if (mlx->mlx_ptr == NULL)
 	{
 		printf("Failed to initialize MLX\n");

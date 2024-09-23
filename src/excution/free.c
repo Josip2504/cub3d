@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 10:04:44 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/19 12:15:51 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:18:33 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	free_textures(t_texture *tex)
 {
 	mlx_delete_texture(tex->north);
 	mlx_delete_texture(tex->south);
-	// mlx_delete_texture(tex->east);
+	mlx_delete_texture(tex->east);
 	mlx_delete_texture(tex->west);
 }
 
