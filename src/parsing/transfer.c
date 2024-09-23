@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/19 13:52:28 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:51:37 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,25 @@ char	*trim(char *s)
 	if (!res)
 		error_exit("Error: malloc");
 	i = 0;
-	while (s[j])
-	{
-		if (s[j] == '\n')
-			res[i] = '\0';
-		else
-			res[i] = s[j];
-		i++;
-		j++;
-	}
+	cop(i, j, s, res);
 	return (res);
 }
 
 static void	ft_color(t_map *map, t_data *data)
 {
+	int	i;
+
+	i = 0;
 	line_check(map->f);
 	line_check(map->c);
 	my_sscanf(map->f, &data->floor[0], &data->floor[1], &data->floor[2]);
 	my_sscanf(map->c, &data->ceil[0], &data->ceil[1], &data->ceil[2]);
+	while (i < 3)
+	{
+		if (data->ceil[i] > 255 || data->floor[i] > 255)
+			error_exit("Error: too big color number");
+		i++;
+	}
 }
 
 t_data	*transfer_data(t_map *map)

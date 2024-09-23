@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 06:33:59 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/19 13:51:14 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:08:38 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	game_loop(void *param)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx *)param;
+	mlx->imgage = NULL;
 	if (mlx->mlx_ptr == NULL)
 	{
 		printf("mlx_ptr is NULL\n");
@@ -46,13 +47,12 @@ void	game_loop(void *param)
 		return ;
 	}
 	hook_mvt(mlx);
-	cast_rays(mlx);
+	cast_rays(mlx); 		//seg
 	mlx_image_to_window(mlx->mlx_ptr, mlx->imgage, 0, 0);
 }
 
 void	player_init(t_mlx *mlx, t_data *data)
 {
-	printf("player position\n");
 	mlx->ply->player_x = (data->ply_x * TILE_SIZE) + (TILE_SIZE / 2);
 	mlx->ply->player_y = (data->ply_y * TILE_SIZE) + (TILE_SIZE / 2);
 	mlx->ply->fov = (FOV * M_PI) / 180;

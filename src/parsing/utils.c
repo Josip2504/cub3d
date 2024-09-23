@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:26:38 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/19 12:15:24 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:53:24 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,17 @@ void	line_check(char *line)
 	}
 	if (c != 3)
 		error_exit("Error: invalid number of colors");
+}
+
+void	cop(int i, int j, char *s, char *res)
+{
+	while (s[j])
+	{
+		if (s[j] == '\n')
+			res[i] = '\0';
+		else
+			res[i] = s[j];
+		i++;
+		j++;
+	}
 }

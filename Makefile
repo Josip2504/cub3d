@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = cc
-CFLAGS = #-Wall -Werror -Wextra #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=address
 SRC_DIR = src
 OBJ_DIR = obj
 

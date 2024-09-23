@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/19 12:30:34 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:13:44 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,13 +141,14 @@ void	player_init(t_mlx *mlx, t_data *data);
 void	free_dbl_char(char **array);
 void	free_ptr(void *ptr);
 void	free_textures(t_texture *tex);
+void	load_texture(t_mlx *mlx, t_map *map);
 
 // utils.c
 void	error_exit(char *s);
 int		ft_isspace(char c);
 void	my_sscanf(char *str, int *a, int *b, int *c);
 void	line_check(char *line);
-void	load_texture(t_mlx *mlx, t_map *map);
+void	cop(int i, int j, char *s, char *res);
 
 int	error(int errnum);
 
