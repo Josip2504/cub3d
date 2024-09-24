@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_err.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blatifat <blatifat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 22:52:12 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/17 20:01:54 by blatifat         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:43:21 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ void	exit_game(t_mlx *mlx)
 
 	i = 0;
 	while (mlx->data->map2d[i])
-		free(mlx->data->map2d[i++]);
+	{
+		if (mlx->data->map2d[i] != NULL)
+			free(mlx->data->map2d[i]);
+		i++;
+	}
 	free(mlx->data->map2d);
 	free(mlx->data);
 	free(mlx->ply);

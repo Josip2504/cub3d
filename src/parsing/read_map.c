@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:15:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/19 13:22:22 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:52:22 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,26 @@ void	read_map(t_map *map, char **argv)
 		line = get_next_line(fd);
 	}
 	close(fd);
+}
+
+void	check_wall(t_map *map, int i, int j)
+{
+	char	**c;
+
+	c = map->map2d;
+	if (i == 0 && (ft_strchr("0NEWS", c[i][j]) != NULL))
+		error_exit("Error: invalid map");
+	if (i == (map->map_height - 1) && (ft_strchr("0NEWS", c[i][j]) != NULL))
+		error_exit("Error: invalid map");
+	if (i != 0 && i != (map->map_height - 1))
+	{
+		if ((ft_strchr("10NEWS", c[i][j - 1]) == NULL))
+			error_exit("Error: invalid map");
+		if ((ft_strchr("10NEWS", c[i][j + 1]) == NULL))
+			error_exit("Error: invalid map");
+		if ((ft_strchr("10NEWS", c[i - 1][j]) == NULL))
+			error_exit("Error: invalid map");
+		if ((ft_strchr("10NEWS", c[i + 1][j]) == NULL))
+			error_exit("Error: invalid map");
+	}
 }

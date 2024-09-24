@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/24 11:26:58 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:57:26 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ void	init(t_map *map);
 
 // read_map.c
 void	read_map(t_map *map, char **argv);
+void	check_wall(t_map *map, int i, int j);
 
 // store_map.c
 void	store_map(t_map *map, char **argv);
@@ -170,5 +171,8 @@ void	valid_map(t_map *map);
 t_data	*transfer_data(t_map *map);
 void	store_player(t_map *map);
 char	*trim(char *s);
+
+// free_stuff.c
+void	free_stuff(t_data *data, t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 06:33:59 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/24 11:27:47 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:33:13 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	game_loop(void *param)
 {
 	t_mlx	*mlx;
 
-	mlx = (t_mlx *)param; 			//deleted image to null 
+	mlx = (t_mlx *)param;
 	if (mlx->imgage != NULL)
 		mlx_delete_image(mlx->mlx_ptr, mlx->imgage);
 	mlx->imgage = mlx_new_image(mlx->mlx_ptr, S_W, S_H);

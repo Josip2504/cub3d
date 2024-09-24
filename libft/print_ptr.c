@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_ptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsamardz <jsamardz@student.42heilnronn.    +#+  +:+       +#+        */
+/*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:12:48 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/05/30 21:04:50 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:20:58 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

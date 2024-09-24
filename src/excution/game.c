@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:12:18 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/24 11:27:02 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:32:13 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,11 @@ void initiation(t_mlx *mlx)
 	mlx->textur->north = NULL;
 	mlx->textur->west = NULL;
 	mlx->textur->south = NULL;
-	// mlx->ply->rotation = 0;
-	// mlx->ply->left_right = 0;
-	// mlx->ply->up_down = 0;
-	// mlx->ray->angle = 0;
-	// mlx->ray->distance = 0;
-	// mlx->ray->wall_flag = 0;
-	// mlx->ray->index = 0;
 }
 
 void	init_game(t_data *data, t_map *map)
 {	
-	t_mlx *mlx = malloc(sizeof(t_mlx));  // Allocate memory here
+	t_mlx *mlx = malloc(sizeof(t_mlx));
 
 	if (!mlx)
 	{
@@ -45,7 +38,7 @@ void	init_game(t_data *data, t_map *map)
 	}
 	initiation(mlx);
 	mlx->data = data;
-	mlx->mlx_ptr = mlx_init(S_W, S_H, "Cub3D", true); 		//added true, was 0
+	mlx->mlx_ptr = mlx_init(S_W, S_H, "Cub3D", true);
 	if (mlx->mlx_ptr == NULL)
 	{
 		printf("Failed to initialize MLX\n");
@@ -54,22 +47,6 @@ void	init_game(t_data *data, t_map *map)
 	load_texture(mlx, map);
 	player_init(mlx, data, map);
 	mlx_loop_hook(mlx->mlx_ptr, &game_loop, mlx);
-	mlx_key_hook(mlx->mlx_ptr, &mlx_key, mlx);			// OK
+	mlx_key_hook(mlx->mlx_ptr, &mlx_key, mlx);
 	mlx_loop(mlx->mlx_ptr);
 }
-
-/* void	init_game(t_data *dt)
-{
-	t_mlx	mlx;
-
-	game_init(&mlx);
-	mlx.data = dt;
-	mlx.mlx_ptr = mlx_init(S_W, S_H, "Cub3D", 0);
-	load_texture(&mlx);
-	init_the_player(&mlx);
-	mlx_loop_hook(mlx.mlx_ptr, &game_loop, &mlx);
-	mlx_key_hook(mlx.mlx_ptr, &mlx_key, &mlx);
-	mlx_loop(mlx.mlx_ptr);  // Enter mlx loop
-	free_game_struct(&mlx);
-}
- */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsamardz <jsamardz@student.42heilnronn.    +#+  +:+       +#+        */
+/*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:56:56 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/05/30 21:14:22 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:19:01 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 static size_t	ftcount(char const *s, char c)
 {
 	size_t	count;
-	size_t	i;
 
 	count = 0;
-	i = -1;
 	while (*s)
 	{
 		while (*s == c)

@@ -1,37 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   free_stuff.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 12:08:51 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/24 12:09:57 by jsamardz         ###   ########.fr       */
+/*   Created: 2024/09/24 11:56:18 by jsamardz          #+#    #+#             */
+/*   Updated: 2024/09/24 12:15:19 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	init(t_map *map)
+static void	free_map(t_map *map)
 {
-	map = (t_map *)malloc(sizeof(t_map));
+	int	i;
+	
 	if (map == NULL)
+		return;
+	if (map->map2d != NULL)
 	{
-		free(map);
-		error_exit("Error: failed to allocate memory for map");
+		i = 0;
+		while (i < map->map_height)
+		{
+			free(map->map2d[i]);
+			i++;
+		}
+		free(map->map2d);
 	}
-	map->map_width = 0;
-	map->map_height = 0;
-	map->arg_c = 0;
-	map->map2d = NULL;
-	map->no = NULL;
-	map->so = NULL;
-	map->ea = NULL;
-	map->we = NULL;
-	map->f = NULL;
-	map->c = NULL;
-	map->player_x = 0;
-	map->player_y = 0;
-	map->player = '\0';
-	map->player_count = 0;
+	// free(map->no);
+	// free(map->so);
+	// free(map->we);
+	// free(map->ea);
+	// free(map->f);
+	// free(map->c);
+	// free(map);
+}
+
+void	free_stuff(t_data *data, t_map *map)
+{
+	(void)data;
+	free_map(map);
 }

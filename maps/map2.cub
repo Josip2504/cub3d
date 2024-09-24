@@ -3,11 +3,10 @@ SO textures/south.png
 WE textures/west.png
 EA textures/east.png
 
-F 152,2, 2
+F 152,2,2 
 C 222,30,0
 
 11111
-10001
-10E01
-10001
+10101
+10N01
 11111

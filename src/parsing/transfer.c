@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/19 14:51:37 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:06:52 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ t_data	*transfer_data(t_map *map)
 	t_data	*dt;
 
 	i = 0;
-	dt = calloc(1, sizeof(t_data));
-	dt->map2d = calloc(map->map_height, sizeof(char *));
+	dt = ft_calloc(1, sizeof(t_data));
+	dt->map2d = ft_calloc(map->map_height, sizeof(char *));
 	while (i < map->map_height)
 	{
 		dt->map2d[i] = ft_strdup(map->map2d[i]);

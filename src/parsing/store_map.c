@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 13:36:04 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/19 12:28:22 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:12:55 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,36 +58,23 @@ void	store_map(t_map *map, char **argv)
 	}
 	map->map2d = malloc(map->map_height * sizeof(char *));
 	if (!map->map2d)
-		error_exit("Error: Map alloc fail");		// potential free leak
+		error_exit("Error: Map alloc fail");
 	line = get_next_line(fd);
 	wloop(map, line, i, fd);
 	close(fd);
 }
 
-static void	check_wall(t_map *map, int i, int j)
-{
-	char	**c;
-
-	c = map->map2d;
-	if (i == 0 && (ft_strchr("0NEWS", c[i][j]) != NULL))
-		error_exit("Error: invalid map");
-	if (i == (map->map_height - 1) && (ft_strchr("0NEWS", c[i][j]) != NULL))
-		error_exit("Error: invalid map");
-	if (i != 0 && i != (map->map_height - 1))
-	{
-		if ((ft_strchr("10NEWS", c[i][j - 1]) == NULL))
-			error_exit("Error: invalid map");
-		if ((ft_strchr("10NEWS", c[i][j + 1]) == NULL))
-			error_exit("Error: invalid map");
-		if ((ft_strchr("10NEWS", c[i - 1][j]) == NULL))
-			error_exit("Error: invalid map");
-		if ((ft_strchr("10NEWS", c[i + 1][j]) == NULL))
-			error_exit("Error: invalid map");
-	}
-}
-
 static void	ft_if(t_map *map, int i, int j)
 {
+	if (map->map2d[i][j] == ' ')
+	{
+		while (j < map->map_width && map->map2d[i][j] == ' ')
+			j++;
+		if (j < map->map_width && map->map2d[i][j] != '1')
+			error_exit("Error: invalid map");
+	}
+	else if (j == 0 && map->map2d[i][0] != ' ' && map->map2d[i][0] != '1')
+		error_exit("Error: invalid map");
 	if (map->map2d[i][j] == 'N' || map->map2d[i][j] == 'E'
 		|| map->map2d[i][j] == 'W' || map->map2d[i][j] == 'S')
 	{
@@ -102,29 +89,37 @@ static void	ft_if(t_map *map, int i, int j)
 		check_wall(map, i, j);
 }
 
+static void	help(int empty_line_encountered, int j, int i, t_map *map)
+{
+	if (empty_line_encountered)
+		error_exit("Error: invalid map - empty line encountered within the map");
+	while (j < map->map_width)
+	{
+		ft_if(map, i, j);
+		j++;
+	}
+}
+
 void	valid_map(t_map *map)
 {
 	int	i;
 	int	j;
+	int	empty_line_encountered;
 
 	i = 0;
-	while (map->map_height > i)
+	empty_line_encountered = 0;
+	while (i < map->map_height)
 	{
 		j = 0;
-		while (map->map_width > j)
-		{
-			if (map->map2d[i][j] == ' ')
-			{
-				while (map->map2d[i][j] == ' ')
-					j++;
-				if (map->map2d[i][j] != '1')
-					error_exit("Error: invalid map");
-			}
-			else if (map->map2d[i][0] != ' ' && map->map2d[i][0] != '1')
-				error_exit("Error: invalid map");
-			ft_if(map, i, j);
+		while (j < map->map_width && map->map2d[i][j] == ' ')
 			j++;
+		if (j == map->map_width || map->map2d[i][j] == '\n')
+		{
+			if (i > 0 && (j == 0 || map->map2d[i][0] == '\n'))
+				empty_line_encountered = 1;
 		}
+		else
+			help(empty_line_encountered, j, i, map);
 		i++;
 	}
 	if (map->player_count != 1)
