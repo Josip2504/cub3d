@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:14:25 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/23 18:32:13 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:29:12 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-// player position, orientation
 // so, ea working fine
 // we, no acting weird
 // probably north

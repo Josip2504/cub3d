@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 06:33:59 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/23 18:19:41 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:27:47 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,19 @@ void	game_loop(void *param)
 	
 }
 
-void	player_init(t_mlx *mlx, t_data *data)
+void	player_init(t_mlx *mlx, t_data *data, t_map *map)
 {
 	mlx->ply->player_x = (data->ply_x * TILE_SIZE) + (TILE_SIZE / 2);
 	mlx->ply->player_y = (data->ply_y * TILE_SIZE) + (TILE_SIZE / 2);
 	mlx->ply->fov = (FOV * M_PI) / 180;
-	mlx->ply->angle = M_PI;
+	if (map->player == 'N')
+		mlx->ply->angle = NORTH;
+	else if (map->player == 'E')
+		mlx->ply->angle = EAST;
+	else if (map->player == 'W')
+		mlx->ply->angle = WEST;
+	else if (map->player == 'S')
+		mlx->ply->angle = SOUTH;
 }
 
 /* void	game_init(t_mlx *mlx)

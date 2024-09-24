@@ -1,21 +1,13 @@
-NO textures/image1.png
-SO textures/image3.png
-WE textures/image2.png
-EA textures/imag.png
+NO textures/north.png
+SO textures/south.png
+WE textures/west.png
+EA textures/east.png
 
 F 152,2, 2
 C 222,30,0
 
 11111
-100011
-10W001
-100011
 10001
-10001
-11001
-10001
-10001
-10001
-10001
+10E01
 10001
 11111

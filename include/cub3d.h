@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/23 17:46:31 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:26:58 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@
 # define PaleGreen 0x98FB98FF
 # define Turquoise 0x40E0D0FF
 
+# define SOUTH M_PI_2
+# define EAST 0
+# define NORTH (3 * M_PI_2)
+# define WEST M_PI
 
 # define RED 0
 # define GREEN 1
@@ -137,7 +141,7 @@ int		intersection_checking(float angle, float *inter,
 			float *step, int is_horizon);
 int		get_unit_circle(float angle, char c);
 void	game_loop(void *param);
-void	player_init(t_mlx *mlx, t_data *data);
+void	player_init(t_mlx *mlx, t_data *data, t_map *map);
 void	free_dbl_char(char **array);
 void	free_ptr(void *ptr);
 void	free_textures(t_texture *tex);

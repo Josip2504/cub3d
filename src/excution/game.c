@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:12:18 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/23 17:48:55 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:27:02 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	init_game(t_data *data, t_map *map)
 		return ;
 	}
 	load_texture(mlx, map);
-	player_init(mlx, data);
+	player_init(mlx, data, map);
 	mlx_loop_hook(mlx->mlx_ptr, &game_loop, mlx);
 	mlx_key_hook(mlx->mlx_ptr, &mlx_key, mlx);			// OK
 	mlx_loop(mlx->mlx_ptr);
