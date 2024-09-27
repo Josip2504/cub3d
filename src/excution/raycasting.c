@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:38 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/23 16:59:52 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:12:12 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ float	hor_intersection(t_mlx *mlx, float angl)
 	float	y_step;
 	int		pixel;
 
+	angl = nor_angle(angl);
 	y_step = TILE_SIZE;
 	x_step = TILE_SIZE / tan(angl);
 	h_y = floor(mlx->ply->player_y / TILE_SIZE) * TILE_SIZE;
@@ -71,6 +72,7 @@ float	ver_intersection(t_mlx *mlx, float angl)
 	float	y_step;
 	int		pixel;
 
+	angl = nor_angle(angl);
 	x_step = TILE_SIZE;
 	y_step = TILE_SIZE * tan(angl);
 	v_x = floor(mlx->ply->player_x / TILE_SIZE) * TILE_SIZE;
@@ -96,6 +98,7 @@ void	calculate_ray_intersections(t_mlx *mlx, int ray)
 	double	v_inter;
 
 	(void)ray;
+	mlx->ray->angle = nor_angle(mlx->ray->angle); 		//
 	if (mlx->ray->angle < 0)
 		mlx->ray->angle += (2 * M_PI);
 	else if (mlx->ray->angle > (2 * M_PI))
@@ -103,7 +106,7 @@ void	calculate_ray_intersections(t_mlx *mlx, int ray)
 	mlx->ray->wall_flag = 0;
 	h_inter = hor_intersection(mlx, mlx->ray->angle);
 	v_inter = ver_intersection(mlx, mlx->ray->angle);
-	if (v_inter <= h_inter)
+	if (v_inter < h_inter) //<=
 		mlx->ray->distance = v_inter;
 	else
 	{

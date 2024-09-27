@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/24 11:57:26 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:08:31 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define S_W 1900
 # define S_H 1000
-# define TILE_SIZE 30
+# define TILE_SIZE 80
 # define FOV 60
 # define ROTATION_SPEED 0.045
 # define PLAYER_SPEED 4
@@ -129,6 +129,7 @@ typedef struct s_wall_params
 	int		ray;
 }	t_wall_params;
 
+float	nor_angle(float angle);
 void	game_init(t_mlx *mlx);
 void	exit_game(t_mlx *mlx);
 void	mlx_key(mlx_key_data_t keydata, void *ml);

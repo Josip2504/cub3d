@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 06:33:59 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/24 14:33:13 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:12:42 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,3 @@ void	player_init(t_mlx *mlx, t_data *data, t_map *map)
 	else if (map->player == 'S')
 		mlx->ply->angle = SOUTH;
 }
-
-/* void	game_init(t_mlx *mlx)
-{
-	*mlx = (t_mlx)
-	{
-		.ply = calloc(1, sizeof(t_player)),
-		.ray = calloc(1, sizeof(t_ray)),
-		.textur = calloc(1, sizeof(t_texture)),
-		.data = NULL,
-		.imgage = NULL
-	};
-	mlx->textur->east = NULL;
-	mlx->textur->west = NULL;
-	mlx->textur->south = NULL;
-	mlx->textur->north = NULL;
-}
- */

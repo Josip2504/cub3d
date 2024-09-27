@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:12:44 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/23 17:19:30 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:13:27 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,9 +212,10 @@ void	draw_wall(t_mlx *mlx, int t_pix, int b_pix, double wall_h)
 	y_o = (t_pix - (S_H / 2) + (wall_h / 2)) * factor;
 	if (y_o < 0)
 		y_o = 0;
-	while (t_pix < b_pix)
+	while (t_pix < b_pix && t_pix < S_H) // Ensure we do not exceed screen height
 	{
-		ft_put_pixel(mlx, mlx->ray->index, t_pix, reverse_bytes(arr[(int)y_o * texture->width + (int)x_o]));
+		if (y_o >= 0 && y_o < texture->height)
+			ft_put_pixel(mlx, mlx->ray->index, t_pix, reverse_bytes(arr[(int)y_o * texture->width + (int)x_o]));
 		y_o += factor;
 		t_pix++;
 	}
