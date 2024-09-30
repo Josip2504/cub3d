@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:14:25 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/24 14:31:34 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:11:09 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int argc, char **argv)
 	t_map	map;
 	t_data	*data;
 
-	// atexit(leaks);
 	if (argc != 2)
 		error_exit("Error: incorect arguments");
 	init(&map);
@@ -31,6 +30,16 @@ int	main(int argc, char **argv)
 	valid_map(&map);
 	store_player(&map);
 	data = transfer_data(&map);
+	
+	// printf("map:\n");
+	// for (int i = 0; i < data->height_map; i++) {
+    //     for (int j = 0; j < data->width_map; j++) {
+    //         printf("%c", data->map2d[i][j]);
+    //     }
+    //     printf("\n");
+    // }
+
+	// exit(1);
 	init_game(data, &map);
 	free_stuff(data, &map);
 	return (0);
@@ -44,3 +53,6 @@ int	main(int argc, char **argv)
 // leaks
 // pointer being freed
 // free init(map)!!!! and parsing
+
+
+// mislim da je sve nacrtano za 90 u desno, orjentacija bez slike funkcionira 

@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:38 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/27 10:12:12 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:05:54 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	calculate_ray_intersections(t_mlx *mlx, int ray)
 	double	v_inter;
 
 	(void)ray;
-	mlx->ray->angle = nor_angle(mlx->ray->angle); 		//
 	if (mlx->ray->angle < 0)
 		mlx->ray->angle += (2 * M_PI);
 	else if (mlx->ray->angle > (2 * M_PI))

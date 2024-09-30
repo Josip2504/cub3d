@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 13:36:04 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/24 12:12:55 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:58:26 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ static void	wloop(t_map *map, char *line, int i, int fd)
 		j = 0;
 		while (line[j] != '\0')
 		{
+			if (line[j] == 32)
+				map->map2d[i][j] = '1';
+			else
+				map->map2d[i][j] = line[j];
 			map->map2d[i][j] = line[j];
 			j++;
 		}
@@ -33,7 +37,7 @@ static void	wloop(t_map *map, char *line, int i, int fd)
 			map->map2d[i][j] = '\0';
 			j++;
 		}
-		map->map2d[i][j] = '\0';
+		// map->map2d[i][j] = '\0';
 		free(line);
 		line = get_next_line(fd);
 		i++;

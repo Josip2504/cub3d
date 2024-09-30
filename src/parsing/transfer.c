@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/24 14:06:52 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:33:15 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,23 +90,44 @@ static void	ft_color(t_map *map, t_data *data)
 	}
 }
 
+void	valid_m(t_data *data)
+{
+	int i = 0;
+
+	while (i < data->height_map)
+	{
+		int j = 0;
+		while (j < data->width_map)
+		{
+			if (data->map2d[i][j] == 10)
+			{
+				while(data->map2d[i][j])
+				{ 
+					data->map2d[i][j] = 0;
+					j++;
+				}
+			}
+			else
+				j++;
+		}
+		i++;
+	}
+}
+
 t_data	*transfer_data(t_map *map)
 {
 	int		i;
 	t_data	*dt;
 
 	i = 0;
-	dt = ft_calloc(1, sizeof(t_data));
-	dt->map2d = ft_calloc(map->map_height, sizeof(char *));
-	while (i < map->map_height)
-	{
-		dt->map2d[i] = ft_strdup(map->map2d[i]);
-		i++;
-	}
+	dt = malloc(1 * sizeof(t_data));
+	dt->map2d = malloc(sizeof(map->map2d));
+	dt->map2d = map->map2d;
 	dt->ply_x = map->player_x;
 	dt->ply_y = map->player_y;
 	dt->height_map = map->map_height;
 	dt->width_map = map->map_width - 1;
+	valid_m(dt);
 	ft_color(map, dt);
 	return (dt);
 }

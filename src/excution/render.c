@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:12:44 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/27 10:13:27 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:03:48 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,8 @@ void	draw_wall(t_mlx *mlx, int t_pix, int b_pix, double wall_h)
 	uint32_t		*arr;
 	mlx_texture_t	*texture = NULL;
 
+	// (void)b_pix;
+	// (void)t_pix;
 	texture = wall_texture(mlx, mlx->ray->wall_flag);
 	arr = (uint32_t *)texture->pixels;
 	factor = (double)texture->height / wall_h;

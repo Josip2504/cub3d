@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:50 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/24 14:53:21 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:50:39 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,13 @@ void	move_player(t_mlx *mlx, double move_x, double move_y)
 {
 	int		map_grid_x;
 	int		map_grid_y;
+	char	c;
 
 	map_grid_x = (int)(mlx->ply->player_x + move_x) / TILE_SIZE;
 	map_grid_y = (int)(mlx->ply->player_y + move_y) / TILE_SIZE;
-	if (mlx->data->map2d[map_grid_y][map_grid_x] != '1')
+	c = mlx->data->map2d[map_grid_x][map_grid_y];
+	printf("%c\n", c);
+	if (c != '1')
 	{
 		mlx->ply->player_x += move_x;
 		mlx->ply->player_y += move_y;
@@ -54,7 +57,7 @@ void	process_player_movement(t_mlx *mlx)
 		move_x = -sin(mlx->ply->angle) * PLAYER_SPEED;
 		move_y = cos(mlx->ply->angle) * PLAYER_SPEED;
 	}
-	else if (mlx->ply->left_right == -1)
+	else if (mlx->ply->left_right == -1)	//left
 	{
 		move_x = sin(mlx->ply->angle) * PLAYER_SPEED;
 		move_y = -cos(mlx->ply->angle) * PLAYER_SPEED;
@@ -64,7 +67,7 @@ void	process_player_movement(t_mlx *mlx)
 		move_x = cos(mlx->ply->angle) * PLAYER_SPEED;
 		move_y = sin(mlx->ply->angle) * PLAYER_SPEED;
 	}
-	else if (mlx->ply->up_down == -1)
+	else if (mlx->ply->up_down == -1)  //down
 	{
 		move_x = -cos(mlx->ply->angle) * PLAYER_SPEED;
 		move_y = -sin(mlx->ply->angle) * PLAYER_SPEED;

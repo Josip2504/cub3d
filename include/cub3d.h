@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/27 10:08:31 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:43:06 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@
 # define PaleGreen 0x98FB98FF
 # define Turquoise 0x40E0D0FF
 
-# define SOUTH M_PI_2
-# define EAST 0
-# define NORTH (3 * M_PI_2)
-# define WEST M_PI
+#define NORTH 0
+#define EAST (M_PI / 2)
+#define SOUTH M_PI
+#define WEST (3 * M_PI / 2) // OK
 
 # define RED 0
 # define GREEN 1
