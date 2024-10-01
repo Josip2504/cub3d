@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_ray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blatifat <blatifat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 23:56:19 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/12 06:29:30 by blatifat         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:55:48 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	get_unit_circle(float angle, char c)
+int	get_unit_circle(float angle, char c)		// maybe
 {
 	if (c == 'x')
 	{

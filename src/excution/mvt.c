@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:50 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/30 15:50:39 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:48:41 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	move_player(t_mlx *mlx, double move_x, double move_y)
 	map_grid_x = (int)(mlx->ply->player_x + move_x) / TILE_SIZE;
 	map_grid_y = (int)(mlx->ply->player_y + move_y) / TILE_SIZE;
 	c = mlx->data->map2d[map_grid_x][map_grid_y];
-	printf("%c\n", c);
+	printf("%c\n", c); 		//prints player position
 	if (c != '1')
 	{
 		mlx->ply->player_x += move_x;

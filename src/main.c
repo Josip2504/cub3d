@@ -6,16 +6,11 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:14:25 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/30 16:11:09 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:09:51 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void    leaks(void)
-{
-    system("leaks cub3d");
-}
 
 int	main(int argc, char **argv)
 {
@@ -56,3 +51,5 @@ int	main(int argc, char **argv)
 
 
 // mislim da je sve nacrtano za 90 u desno, orjentacija bez slike funkcionira 
+
+// find where are rays casting form, what angle and turn them 90 degrest to left

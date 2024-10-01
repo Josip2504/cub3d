@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 06:33:59 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/30 15:34:33 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:05:32 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	game_loop(void *param)
 	hook_mvt(mlx);
 	cast_rays(mlx);
 	mlx_image_to_window(mlx->mlx_ptr, mlx->imgage, 0, 0);
-	
 }
 
 void	player_init(t_mlx *mlx, t_data *data, t_map *map)

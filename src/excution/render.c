@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:12:44 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/30 16:03:48 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/01 10:20:29 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 		mlx_put_pixel(mlx->imgage, x, y, color);
 }
 
+
 // Choose the appropriate texture based on the ray angle
 mlx_texture_t *wall_texture(t_mlx *mlx, int flag)
 {
@@ -205,8 +206,6 @@ void	draw_wall(t_mlx *mlx, int t_pix, int b_pix, double wall_h)
 	uint32_t		*arr;
 	mlx_texture_t	*texture = NULL;
 
-	// (void)b_pix;
-	// (void)t_pix;
 	texture = wall_texture(mlx, mlx->ray->wall_flag);
 	arr = (uint32_t *)texture->pixels;
 	factor = (double)texture->height / wall_h;
@@ -222,6 +221,8 @@ void	draw_wall(t_mlx *mlx, int t_pix, int b_pix, double wall_h)
 		t_pix++;
 	}
 }
+
+
 // Render the wall and floor/ceiling
 void	render_wall_and_floor(t_mlx *mlx, int ray)
 {

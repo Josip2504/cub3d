@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:38 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/30 16:05:54 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:07:34 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int	wall_hit(float x, float y, t_mlx *mlx)
 
 float	hor_intersection(t_mlx *mlx, float angl)
 {
-	float	h_x;
-	float	h_y;
-	float	x_step;
-	float	y_step;
-	int		pixel;
+	float	h_x = 0.0;
+	float	h_y = 0.0;
+	float	x_step = 0.0;
+	float	y_step = 0.0;
+	int		pixel = 0;
 
 	angl = nor_angle(angl);
 	y_step = TILE_SIZE;
@@ -92,12 +92,11 @@ float	ver_intersection(t_mlx *mlx, float angl)
 			+ pow(v_y - mlx->ply->player_y, 2)));
 }
 
-void	calculate_ray_intersections(t_mlx *mlx, int ray)
+void	calculate_ray_intersections(t_mlx *mlx)
 {
-	double	h_inter;
-	double	v_inter;
+	double	h_inter = 0.0;
+	double	v_inter = 0.0;
 
-	(void)ray;
 	if (mlx->ray->angle < 0)
 		mlx->ray->angle += (2 * M_PI);
 	else if (mlx->ray->angle > (2 * M_PI))
@@ -105,7 +104,7 @@ void	calculate_ray_intersections(t_mlx *mlx, int ray)
 	mlx->ray->wall_flag = 0;
 	h_inter = hor_intersection(mlx, mlx->ray->angle);
 	v_inter = ver_intersection(mlx, mlx->ray->angle);
-	if (v_inter < h_inter) //<=
+	if (v_inter <= h_inter)
 		mlx->ray->distance = v_inter;
 	else
 	{
@@ -121,9 +120,10 @@ void	cast_rays(t_mlx *mlx)
 	ray = 0;
 	mlx->ray->angle = mlx->ply->angle - (mlx->ply->fov / 2);
 
+	
 	while (ray < S_W)
 	{
-		calculate_ray_intersections(mlx, ray);
+		calculate_ray_intersections(mlx);
 		render_wall_and_floor(mlx, ray);
 		ray++;
 		mlx->ray->angle += (mlx->ply->fov / S_W);
