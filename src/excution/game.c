@@ -6,35 +6,39 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:12:18 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/30 14:12:27 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/04 19:59:50 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void initiation(t_mlx *mlx)
+void	initiation(t_mlx *mlx)
 {
-	mlx->ply = malloc(sizeof(t_player));
-	mlx->ray = malloc(sizeof(t_ray));
-	mlx->textur = malloc(sizeof(t_texture));
+	mlx->ply = (t_player *)malloc(sizeof(t_player));
+	mlx->ray = (t_ray *)malloc(sizeof(t_ray));
+	mlx->textur = (t_texture *)malloc(sizeof(t_texture));
 	mlx->data = NULL;
 	mlx->map = NULL;
 	mlx->imgage = NULL;
 	mlx->mlx_ptr = NULL;
-	mlx->textur->east = NULL;
-	mlx->textur->north = NULL;
-	mlx->textur->west = NULL;
-	mlx->textur->south = NULL;
+	if (mlx->textur)
+	{
+		mlx->textur->east = NULL;
+		mlx->textur->north = NULL;
+		mlx->textur->west = NULL;
+		mlx->textur->south = NULL;
+	}
 }
 
 void	init_game(t_data *data, t_map *map)
-{	
-	t_mlx *mlx = malloc(sizeof(t_mlx));
+{
+	t_mlx	*mlx;
 
+	mlx = malloc(sizeof(t_mlx));
 	if (!mlx)
 	{
 		printf("Memory allocation failed\n");
-		return;
+		return ;
 	}
 	initiation(mlx);
 	mlx->data = data;

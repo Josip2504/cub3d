@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/01 13:01:24 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/04 21:04:44 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define S_W 1900
 # define S_H 1000
-# define TILE_SIZE 80
+# define TILE_SIZE 15
 # define FOV 60
 # define ROTATION_SPEED 0.045
 # define PLAYER_SPEED 4
@@ -44,10 +44,10 @@
 # define PaleGreen 0x98FB98FF
 # define Turquoise 0x40E0D0FF
 
-#define NORTH 0
-#define EAST (M_PI / 2)
-#define SOUTH M_PI
-#define WEST (3 * M_PI / 2) // OK
+#define NORTH (3 * M_PI / 2)
+#define EAST 0
+#define SOUTH M_PI /2
+#define WEST 2 * M_PI // OK
 
 # define RED 0
 # define GREEN 1
@@ -57,7 +57,7 @@ typedef struct	s_player
 {
 	int		player_x;
 	int		player_y;
-	double	angle;
+	double	ply_angle;
 	float	fov;
 	int		rotation;
 	int		left_right;
@@ -68,6 +68,8 @@ typedef struct s_ray
 {
 	double	angle;
 	double	distance;
+	double	hor_x;
+	double	hor_y;
 	int		wall_flag;
 	int		index;
 }	t_ray;
@@ -129,51 +131,54 @@ typedef struct s_wall_params
 	int		ray;
 }	t_wall_params;
 
-float	nor_angle(float angle);
-void	game_init(t_mlx *mlx);
-void	exit_game(t_mlx *mlx);
-void	mlx_key(mlx_key_data_t keydata, void *ml);
-void	hook_mvt(t_mlx *mlx);
-void	render_wall_and_floor(t_mlx *mlx, int ray);
-void	init_game(t_data *data, t_map *map);
-void	cast_rays(t_mlx *mlx);
-void	free_game(t_mlx *mlx);
-int		intersection_checking(float angle, float *inter,
-			float *step, int is_horizon);
-int		get_unit_circle(float angle, char c);
-void	game_loop(void *param);
-void	player_init(t_mlx *mlx, t_data *data, t_map *map);
-void	free_dbl_char(char **array);
-void	free_ptr(void *ptr);
-void	free_textures(t_texture *tex);
-void	load_texture(t_mlx *mlx, t_map *map);
+typedef struct s_texture_params
+{
+    double x_offset;
+    double y_offset;
+    double scale_factor;
+    mlx_texture_t *texture;
+} t_texture_params;
 
+
+void			exit_game(t_mlx *mlx);
+void			mlx_key(mlx_key_data_t keydata, void *ml);
+void			hook_mvt(t_mlx *mlx);
+void			render_wall_and_floor(t_mlx *mlx, int ray);
+void			init_game(t_data *data, t_map *map);
+void			cast_rays(t_mlx *mlx);
+void			free_game(t_mlx *mlx);
+int				verify_circle(float angle, char c);
+int				evaluate_intersection(float angle, float *inter, float *step, int horiz);
+void			game_loop(void *param);
+void			player_init(t_mlx *mlx, t_data *data, t_map *map);
+void			free_dbl_char(char **array);
+void			free_ptr(void *ptr);
+void			free_textures(t_texture *tex);
+void			load_texture(t_mlx *mlx, t_map *map);
+uint32_t		rgb_color(int r, int g, int b, int a);
+void			ft_put_pixel(t_mlx *mlx, int x, int y, int color);
+unsigned int	get_color(int c);
+double			get_x_offset(mlx_texture_t *texture, t_mlx *mlx);
 // utils.c
-void	error_exit(char *s);
-int		ft_isspace(char c);
-void	my_sscanf(char *str, int *a, int *b, int *c);
-void	line_check(char *line);
-void	cop(int i, int j, char *s, char *res);
-
-int	error(int errnum);
-
+void			error_exit(char *s);
+int				ft_isspace(char c);
+void			my_sscanf(char *str, int *a, int *b, int *c);
+void			line_check(char *line);
+void			cop(int i, int j, char *s, char *res);
+int				error(int errnum);
 // init.c
-void	init(t_map *map);
-
+void			init(t_map *map);
 // read_map.c
-void	read_map(t_map *map, char **argv);
-void	check_wall(t_map *map, int i, int j);
-
+void			read_map(t_map *map, char **argv);
+void			check_wall(t_map *map, int i, int j);
 // store_map.c
-void	store_map(t_map *map, char **argv);
-void	valid_map(t_map *map);
-
+void			store_map(t_map *map, char **argv);
+void			valid_map(t_map *map);
 // transfer.c
-t_data	*transfer_data(t_map *map);
-void	store_player(t_map *map);
-char	*trim(char *s);
-
+t_data			*transfer_data(t_map *map);
+void			store_player(t_map *map);
+char			*trim(char *s);
 // free_stuff.c
-void	free_stuff(t_data *data, t_map *map);
+void			free_stuff(t_data *data, t_map *map);
 
 #endif

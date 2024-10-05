@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsamardz <jsamardz@student.42heilnronn.    +#+  +:+       +#+        */
+/*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:25:45 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/03/12 20:54:18 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/04 21:10:30 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_itoa(int n)
 		return (ft_strdup("-2147483648"));
 	if (n == 0)
 		return (ft_strdup("0"));
-	str = (char *)malloc((len + 1) * sizeof(char));
+	str = (char *)((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	*(str + len) = 0;

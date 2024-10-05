@@ -6,7 +6,7 @@
 /*   By: blatifat <blatifat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:13 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/12 07:29:35 by blatifat         ###   ########.fr       */
+/*   Updated: 2024/10/03 04:15:21 by blatifat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	mlx_key(mlx_key_data_t keydata, void *ml)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx *)ml;
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS) 
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		exit_game(mlx);
 	else if (keydata.action == MLX_PRESS)
 		handle_key_press(mlx, keydata.key);

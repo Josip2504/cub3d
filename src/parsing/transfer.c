@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/30 14:33:15 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/04 21:03:42 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,10 @@ void	valid_m(t_data *data)
 
 t_data	*transfer_data(t_map *map)
 {
-	int		i;
+	// int		i;
 	t_data	*dt;
 
-	i = 0;
+	// i = 0;
 	dt = malloc(1 * sizeof(t_data));
 	dt->map2d = malloc(sizeof(map->map2d));
 	dt->map2d = map->map2d;

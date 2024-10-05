@@ -6,54 +6,34 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 23:56:19 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/01 12:55:48 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/04 19:20:24 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	get_unit_circle(float angle, char c)		// maybe
+int	verify_circle(float angle, char c)
 {
 	if (c == 'x')
-	{
-		if (angle > 0 && angle < M_PI)
-			return (1);
-		else
-			return (0);
-	}
-	else if (c == 'y')
-	{
-		if (angle > (M_PI / 2) && angle < (3 * M_PI) / 2)
-			return (1);
-		else
-			return (0);
-	}
+		return (angle > 0 && angle < M_PI);
+	if (c == 'y')
+		return (angle > M_PI / 2 && angle < 3 * M_PI / 2);
 	return (0);
 }
 
-int	intersection_checking(float angle, float *inter,
-	float *step, int is_horizon)
+int	evaluate_intersection(float angle, float *inter, float *step, int horiz)
 {
-	if (is_horizon)
-	{
-		if (angle > 0 && angle < M_PI)
-		{
-			*inter += TILE_SIZE;
-			return (-1);
-		}
-		else
-			*step = -*step;
-	}
+	int	is_positive_direction;
+
+	if (horiz)
+		is_positive_direction = (angle > 0 && angle < M_PI);
 	else
+		is_positive_direction = !(angle > M_PI / 2 && angle < 3 * M_PI / 2);
+	if (is_positive_direction)
 	{
-		if (!(angle > M_PI / 2 && angle < 3 * M_PI / 2))
-		{
-			*inter += TILE_SIZE;
-			return (-1);
-		}
-		else
-			*step = -*step;
+		*inter += TILE_SIZE;
+		return (-1);
 	}
+	*step *= (-1);
 	return (1);
 }
-
