@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:08:51 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/04 21:16:22 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/05 18:55:36 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init(t_map *map)
 	if (map == NULL)
 	{
 		free(map);
-		error_exit("Error: failed to allocate memory for map");
+		error_exit_nofree("Error: failed to allocate memory for map");
 	}
 	map->map_width = 0;
 	map->map_height = 0;

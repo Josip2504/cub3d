@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 22:52:12 by blatifat          #+#    #+#             */
-/*   Updated: 2024/09/24 12:43:21 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/05 18:08:23 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,22 @@ void	exit_game(t_mlx *mlx)
 	int	i;
 
 	i = 0;
-	while (mlx->data->map2d[i])
+	if (mlx->data->map2d)
 	{
-		if (mlx->data->map2d[i] != NULL)
-			free(mlx->data->map2d[i]);
-		i++;
+		while (i < mlx->data->height_map)
+		{
+			if (mlx->data->map2d[i])
+				free(mlx->data->map2d[i]);
+			i++;
+		}
+		free(mlx->data->map2d);
 	}
-	free(mlx->data->map2d);
-	free(mlx->data);
-	free(mlx->ply);
-	free(mlx->ray);
+	if (mlx->data)
+		free(mlx->data);
+	if (mlx->ply)
+		free(mlx->ply);
+	if (mlx->ray)
+		free(mlx->ray);
 	mlx_delete_image(mlx->mlx_ptr, mlx->imgage);
 	mlx_close_window(mlx->mlx_ptr);
 	mlx_terminate(mlx->mlx_ptr);

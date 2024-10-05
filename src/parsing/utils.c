@@ -6,14 +6,46 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:26:38 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/24 14:27:22 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/05 18:58:38 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	error_exit(char *s)
+void	free_map(t_map *map, int i)
 {
+	if (map == NULL)
+		return ;
+	if (map->map2d)
+	{
+		while (i < map->map_height)
+		{
+			if (map->map2d[i])
+				free(map->map2d[i]);
+			i++;
+		}
+		free(map->map2d);
+	}
+	// if (map->no)
+	// 	free(map->no);
+	// if (map->so)
+	// 	free(map->so);
+	// if (map->we)
+	// 	free(map->we);
+	// if (map->ea)
+	// 	free(map->ea);
+	// if (map->f)
+	// 	free(map->f);
+	// if (map->c)
+	// 	free(map->c);
+}
+
+void	error_exit(t_map *map, char *s)
+{
+	int	i;
+
+	i = 0;
+	free_map(map, i);
 	ft_printf("%s\n", s);
 	exit(EXIT_FAILURE);
 }
@@ -51,19 +83,20 @@ void	my_sscanf(char *str, int *a, int *b, int *c)
 	*c = numbers[2];
 }
 
-void	line_check(char *line)
+void	line_check(t_map *map, char *line)
 {
 	int	i;
 	int	c;
 
 	i = 0;
 	c = 0;
+	char_check(map, line);
 	while (line[i])
 	{
 		while (ft_isspace(line[i]))
 			i++;
 		if (!ft_isdigit(line[i]) && !ft_isspace(line[i]) && line[i] != ',')
-			error_exit("Error: invalid color");
+			error_exit(map, "Error: invalid color");
 		while (ft_isdigit(line[i++]))
 		{
 			if (!ft_isdigit(line[i]))
@@ -75,7 +108,7 @@ void	line_check(char *line)
 		i++;
 	}
 	if (c != 3)
-		error_exit("Error: invalid number of colors");
+		error_exit(map, "Error: invalid number of colors");
 }
 
 void	cop(int i, int j, char *s, char *res)

@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/04 21:04:44 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/05 18:53:48 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,26 +159,30 @@ uint32_t		rgb_color(int r, int g, int b, int a);
 void			ft_put_pixel(t_mlx *mlx, int x, int y, int color);
 unsigned int	get_color(int c);
 double			get_x_offset(mlx_texture_t *texture, t_mlx *mlx);
+int				error(int errnum);
 // utils.c
-void			error_exit(char *s);
+void			error_exit(t_map *map, char *s);
 int				ft_isspace(char c);
 void			my_sscanf(char *str, int *a, int *b, int *c);
-void			line_check(char *line);
+void			line_check(t_map *map, char *line);
 void			cop(int i, int j, char *s, char *res);
-int				error(int errnum);
 // init.c
 void			init(t_map *map);
 // read_map.c
 void			read_map(t_map *map, char **argv);
+int				correct_arg(const char *name);
 void			check_wall(t_map *map, int i, int j);
 // store_map.c
 void			store_map(t_map *map, char **argv);
 void			valid_map(t_map *map);
 // transfer.c
 t_data			*transfer_data(t_map *map);
-void			store_player(t_map *map);
-char			*trim(char *s);
+char			*trim(t_map *map, char *s);
 // free_stuff.c
 void			free_stuff(t_data *data, t_map *map);
+// utils2.c
+void			store_player(t_map *map);
+void			char_check(t_map *map, char *line);
+void			error_exit_nofree(char *s);
 
 #endif

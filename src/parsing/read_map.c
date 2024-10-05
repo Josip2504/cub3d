@@ -6,13 +6,13 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:15:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/09/24 12:52:22 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/05 19:00:45 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static int	correct_arg(const char *name)
+int	correct_arg(const char *name)
 {
 	const char	*end;
 	size_t		name_len;
@@ -36,17 +36,17 @@ static int	store_data(t_map *map, char *line, int flag)
 	while (line[i] == 32 || line[i] == 9)
 		i++;
 	if (line[i] == 'N' && line[i + 1] == 'O')
-		map->no = trim(line);
+		map->no = trim(map, line);
 	else if (line[i] == 'S' && line[i + 1] == 'O')
-		map->so = trim(line);
+		map->so = trim(map, line);
 	else if (line[i] == 'W' && line[i + 1] == 'E')
-		map->we = trim(line);
+		map->we = trim(map, line);
 	else if (line[i] == 'E' && line[i + 1] == 'A')
-		map->ea = trim(line);
+		map->ea = trim(map, line);
 	else if (line[i] == 'F')
-		map->f = trim(line);
+		map->f = trim(map, line);
 	else if (line[i] == 'C')
-		map->c = trim(line);
+		map->c = trim(map, line);
 	else if (line[i] == '\n')
 		flag = 0;
 	else if (line[i] == '1' || line[i] == '0' || line[i] == 'S'
@@ -62,7 +62,7 @@ static void	map_size(t_map *map, char *line)
 
 	temp_len = 0;
 	if (!map->no || !map->ea || !map->we || !map->so || !map->f || !map->c)
-		error_exit("Error: Missing textures or colors");
+		error_exit(map, "Error: Missing textures or colors");
 	map->map_height++;
 	temp_len = (int)ft_strlen(line);
 	if (temp_len >= map->map_width)
@@ -75,11 +75,9 @@ void	read_map(t_map *map, char **argv)
 	char	*line;
 	int		flag;
 
-	if (!correct_arg(argv[1]))
-		error_exit("Error: Argument must be .cub file");
 	fd = open((argv[1]), O_RDONLY);
 	if (fd < 0)
-		error_exit("Error: Opeining map, check does map exists");
+		error_exit(map, "Error: Opeining map, check does map exists");
 	flag = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -91,6 +89,8 @@ void	read_map(t_map *map, char **argv)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	close(fd);
 }
 
@@ -100,18 +100,18 @@ void	check_wall(t_map *map, int i, int j)
 
 	c = map->map2d;
 	if (i == 0 && (ft_strchr("0NEWS", c[i][j]) != NULL))
-		error_exit("Error: invalid map");
+		error_exit(map, "Error: invalid map");
 	if (i == (map->map_height - 1) && (ft_strchr("0NEWS", c[i][j]) != NULL))
-		error_exit("Error: invalid map");
+		error_exit(map, "Error: invalid map");
 	if (i != 0 && i != (map->map_height - 1))
 	{
 		if ((ft_strchr("10NEWS", c[i][j - 1]) == NULL))
-			error_exit("Error: invalid map");
+			error_exit(map, "Error: invalid map");
 		if ((ft_strchr("10NEWS", c[i][j + 1]) == NULL))
-			error_exit("Error: invalid map");
+			error_exit(map, "Error: invalid map");
 		if ((ft_strchr("10NEWS", c[i - 1][j]) == NULL))
-			error_exit("Error: invalid map");
+			error_exit(map, "Error: invalid map");
 		if ((ft_strchr("10NEWS", c[i + 1][j]) == NULL))
-			error_exit("Error: invalid map");
+			error_exit(map, "Error: invalid map");
 	}
 }

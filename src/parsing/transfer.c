@@ -6,34 +6,11 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/04 21:03:42 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/05 17:42:20 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	store_player(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map->map_height > i)
-	{
-		j = 0;
-		while (map->map_width > j)
-		{
-			if (map->map2d[i][j] == 'W' || map->map2d[i][j] == 'N'
-				|| map->map2d[i][j] == 'E' || map->map2d[i][j] == 'S')
-			{
-				map->player_x = i;
-				map->player_y = j;
-			}
-			j++;
-		}
-		i++;
-	}
-}
 
 static int	help(char *s, int i)
 {
@@ -45,7 +22,7 @@ static int	help(char *s, int i)
 	return (i);
 }
 
-char	*trim(char *s)
+char	*trim(t_map *map, char *s)
 {
 	int		i;
 	int		j;
@@ -61,13 +38,13 @@ char	*trim(char *s)
 	while (s[i] == 32 || s[i] == 9)
 		i++;
 	if (s[i] == '\0' || s[i] == '\n')
-		error_exit("Error: Missing textures");
+		error_exit(map, "Error: Missing textures");
 	j = i;
 	while (s[i++])
 		len++;
 	res = ft_calloc(len, sizeof(char *));
 	if (!res)
-		error_exit("Error: malloc");
+		error_exit(map, "Error: malloc");
 	i = 0;
 	cop(i, j, s, res);
 	return (res);
@@ -78,14 +55,14 @@ static void	ft_color(t_map *map, t_data *data)
 	int	i;
 
 	i = 0;
-	line_check(map->f);
-	line_check(map->c);
+	line_check(map, map->f);
+	line_check(map, map->c);
 	my_sscanf(map->f, &data->floor[0], &data->floor[1], &data->floor[2]);
 	my_sscanf(map->c, &data->ceil[0], &data->ceil[1], &data->ceil[2]);
 	while (i < 3)
 	{
 		if (data->ceil[i] > 255 || data->floor[i] > 255)
-			error_exit("Error: too big color number");
+			error_exit(map, "Error: too big color number");
 		i++;
 	}
 }
@@ -116,10 +93,9 @@ void	valid_m(t_data *data)
 
 t_data	*transfer_data(t_map *map)
 {
-	// int		i;
+
 	t_data	*dt;
 
-	// i = 0;
 	dt = malloc(1 * sizeof(t_data));
 	dt->map2d = malloc(sizeof(map->map2d));
 	dt->map2d = map->map2d;
