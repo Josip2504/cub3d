@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/05 17:42:20 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:19:55 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_data	*transfer_data(t_map *map)
 	t_data	*dt;
 
 	dt = malloc(1 * sizeof(t_data));
-	dt->map2d = malloc(sizeof(map->map2d));
+	// dt->map2d = malloc(sizeof(map->map2d));
 	dt->map2d = map->map2d;
 	dt->ply_x = map->player_x;
 	dt->ply_y = map->player_y;

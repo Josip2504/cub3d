@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/07 10:57:10 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:24:32 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ int				ft_isspace(char c);
 void			my_sscanf(char *str, int *a, int *b, int *c);
 void			line_check(t_map *map, char *line);
 void			cop(int i, int j, char *s, char *res);
+void	free_map(t_map *map, int i);
 // init.c
 void			init(t_map *map);
 // read_map.c
@@ -178,8 +179,6 @@ void			valid_map(t_map *map);
 // transfer.c
 t_data			*transfer_data(t_map *map);
 char			*trim(t_map *map, char *s);
-// free_stuff.c
-void			free_stuff(t_data *data, t_map *map);
 // utils2.c
 void			store_player(t_map *map);
 void			char_check(t_map *map, char *line);
