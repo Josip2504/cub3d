@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/07 14:56:22 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:24:23 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	help(char *s, int i)
 	return (i);
 }
 
-char	*trim(t_map *map, char *s)
+char	*trim(t_map *map, char *s, char *dest)
 {
 	int		i;
 	int		j;
@@ -32,6 +32,7 @@ char	*trim(t_map *map, char *s)
 	i = 0;
 	len = 0;
 	res = NULL;
+	check_dest(dest, map);
 	while (s[i] == 32 || s[i] == 9)
 		i++;
 	i = help(s, i);

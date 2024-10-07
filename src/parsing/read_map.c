@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:15:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/05 19:00:45 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:21:26 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ static int	store_data(t_map *map, char *line, int flag)
 	while (line[i] == 32 || line[i] == 9)
 		i++;
 	if (line[i] == 'N' && line[i + 1] == 'O')
-		map->no = trim(map, line);
+		map->no = trim(map, line, map->no);
 	else if (line[i] == 'S' && line[i + 1] == 'O')
-		map->so = trim(map, line);
+		map->so = trim(map, line, map->so);
 	else if (line[i] == 'W' && line[i + 1] == 'E')
-		map->we = trim(map, line);
+		map->we = trim(map, line, map->we);
 	else if (line[i] == 'E' && line[i + 1] == 'A')
-		map->ea = trim(map, line);
+		map->ea = trim(map, line, map->ea);
 	else if (line[i] == 'F')
-		map->f = trim(map, line);
+		map->f = trim(map, line, map->f);
 	else if (line[i] == 'C')
-		map->c = trim(map, line);
+		map->c = trim(map, line, map->c);
 	else if (line[i] == '\n')
 		flag = 0;
 	else if (line[i] == '1' || line[i] == '0' || line[i] == 'S'

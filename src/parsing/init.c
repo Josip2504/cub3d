@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:08:51 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/07 14:49:17 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:24:04 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,10 @@ void	init(t_map *map)
 	map->player_y = 0;
 	map->player = '\0';
 	map->player_count = 0;
+}
+
+void	check_dest(char *s, t_map *map)
+{
+	if (s != NULL)
+		error_exit(map, "Error: duplicate texture");
 }
