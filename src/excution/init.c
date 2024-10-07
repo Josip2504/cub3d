@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 06:33:59 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/07 15:00:27 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:11:21 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ void	load_texture(t_mlx *mlx, t_map *map)
 	mlx->textur->west = mlx_load_png(map->we);
 	if (!mlx->textur->east || !mlx->textur->south
 		|| !mlx->textur->north || !mlx->textur->west)
-	{
-		printf("Error: Failed to load textures\n");
-		free_game(mlx);
 		error(LOAD_TEXTURES);
-	}
 }
 
 void	game_loop(void *param)
