@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/07 14:24:32 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:57:51 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,16 @@
 # define INVALID_MAP 6
 # define LOAD_TEXTURES 7
 
-# define Moccasin 0xFFE4B5FF
-# define Gold 0xFFD700FF
-# define SteelBlue 0x4682B4FF
-# define HotPink 0xFF69B4FF
-# define PaleGreen 0x98FB98FF
-# define Turquoise 0x40E0D0FF
-
-#define NORTH (3 * M_PI / 2)
-#define EAST 0
-#define SOUTH M_PI /2
-#define WEST 2 * M_PI // OK
+# define NORTH 4.71238898038
+# define EAST 0.0
+# define SOUTH 1.57079632679
+# define WEST 6.28318530718
 
 # define RED 0
 # define GREEN 1
 # define BLUE 2
 
-typedef struct	s_player
+typedef struct s_player
 {
 	int		player_x;
 	int		player_y;
@@ -112,7 +105,7 @@ typedef struct s_texture
 	mlx_texture_t	*north;
 }	t_texture;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	mlx_image_t	*imgage;
 	mlx_t		*mlx_ptr;
@@ -133,12 +126,11 @@ typedef struct s_wall_params
 
 typedef struct s_texture_params
 {
-    double x_offset;
-    double y_offset;
-    double scale_factor;
-    mlx_texture_t *texture;
-} t_texture_params;
-
+	double			x_offset;
+	double			y_offset;
+	double			scale_factor;
+	mlx_texture_t	*texture;
+}	t_texture_params;
 
 void			exit_game(t_mlx *mlx);
 void			mlx_key(mlx_key_data_t keydata, void *ml);
@@ -148,7 +140,8 @@ void			init_game(t_data *data, t_map *map);
 void			cast_rays(t_mlx *mlx);
 void			free_game(t_mlx *mlx);
 int				verify_circle(float angle, char c);
-int				evaluate_intersection(float angle, float *inter, float *step, int horiz);
+int				evaluate_intersection(float angle, float *inter,
+					float *step, int horiz);
 void			game_loop(void *param);
 void			player_init(t_mlx *mlx, t_data *data, t_map *map);
 void			free_dbl_char(char **array);
@@ -162,11 +155,9 @@ double			get_x_offset(mlx_texture_t *texture, t_mlx *mlx);
 int				error(int errnum);
 // utils.c
 void			error_exit(t_map *map, char *s);
-int				ft_isspace(char c);
 void			my_sscanf(char *str, int *a, int *b, int *c);
 void			line_check(t_map *map, char *line);
-void			cop(int i, int j, char *s, char *res);
-void	free_map(t_map *map, int i);
+void			free_map(t_map *map, int i);
 // init.c
 void			init(t_map *map);
 // read_map.c
@@ -180,6 +171,8 @@ void			valid_map(t_map *map);
 t_data			*transfer_data(t_map *map);
 char			*trim(t_map *map, char *s);
 // utils2.c
+int				ft_isspace(char c);
+void			cop(int i, int j, char *s, char *res);
 void			store_player(t_map *map);
 void			char_check(t_map *map, char *line);
 void			error_exit_nofree(char *s);

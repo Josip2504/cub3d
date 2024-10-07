@@ -6,26 +6,29 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:26:38 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/07 14:17:27 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:59:24 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+static void	free_2d(int i, t_map *map)
+{
+	while (i < map->map_height)
+	{
+		if (map->map2d[i])
+			free(map->map2d[i]);
+		i++;
+	}
+	free(map->map2d);
+}
 
 void	free_map(t_map *map, int i)
 {
 	if (map == NULL)
 		return ;
 	if (map->map2d)
-	{
-		while (i < map->map_height)
-		{
-			if (map->map2d[i])
-				free(map->map2d[i]);
-			i++;
-		}
-		free(map->map2d);
-	}
+		free_2d(i, map);
 	if (map->no)
 		free(map->no);
 	if (map->so)
@@ -50,12 +53,6 @@ void	error_exit(t_map *map, char *s)
 	free_map(map, i);
 	ft_printf("%s\n", s);
 	exit(EXIT_FAILURE);
-}
-
-int	ft_isspace(char c)
-{
-	return (c == ' ' || c == '\t' || c == '\n'
-		|| c == '\v' || c == '\f' || c == '\r');
 }
 
 void	my_sscanf(char *str, int *a, int *b, int *c)
@@ -111,17 +108,4 @@ void	line_check(t_map *map, char *line)
 	}
 	if (c != 3)
 		error_exit(map, "Error: invalid number of colors");
-}
-
-void	cop(int i, int j, char *s, char *res)
-{
-	while (s[j])
-	{
-		if (s[j] == '\n')
-			res[i] = '\0';
-		else
-			res[i] = s[j];
-		i++;
-		j++;
-	}
 }

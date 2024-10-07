@@ -6,11 +6,17 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:12:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/05 18:53:38 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:57:40 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+int	ft_isspace(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r');
+}
 
 void	store_player(t_map *map)
 {
@@ -58,4 +64,17 @@ void	error_exit_nofree(char *s)
 {
 	ft_printf("%s\n", s);
 	exit(EXIT_FAILURE);
+}
+
+void	cop(int i, int j, char *s, char *res)
+{
+	while (s[j])
+	{
+		if (s[j] == '\n')
+			res[i] = '\0';
+		else
+			res[i] = s[j];
+		i++;
+		j++;
+	}
 }

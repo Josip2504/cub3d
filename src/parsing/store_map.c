@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 13:36:04 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/05 17:57:44 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:50:22 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ static void	wloop(t_map *map, char *line, int i, int fd)
 			j++;
 		}
 		while (j < map->map_width)
-		{
-			map->map2d[i][j] = '\0';
-			j++;
-		}
+			map->map2d[i][j++] = '\0';
 		free(line);
 		line = get_next_line(fd);
 		i++;
@@ -92,7 +89,7 @@ static void	ft_if(t_map *map, int i, int j)
 static void	help(int empty_line_encountered, int j, int i, t_map *map)
 {
 	if (empty_line_encountered)
-		error_exit(map, "Error: invalid map - empty line encountered within the map");
+		error_exit(map, "Error: invalid map");
 	while (j < map->map_width)
 	{
 		ft_if(map, i, j);

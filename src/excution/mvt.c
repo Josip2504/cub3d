@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:50 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/04 20:57:46 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:00:47 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	process_player_movement(t_mlx *mlx, double move_x, double move_y)
 		move_x = -sin(mlx->ply->ply_angle) * PLAYER_SPEED;
 		move_y = cos(mlx->ply->ply_angle) * PLAYER_SPEED;
 	}
-	else if (mlx->ply->left_right == -1)	//left
+	else if (mlx->ply->left_right == -1)
 	{
 		move_x = sin(mlx->ply->ply_angle) * PLAYER_SPEED;
 		move_y = -cos(mlx->ply->ply_angle) * PLAYER_SPEED;
@@ -61,7 +61,7 @@ void	process_player_movement(t_mlx *mlx, double move_x, double move_y)
 		move_x = cos(mlx->ply->ply_angle) * PLAYER_SPEED;
 		move_y = sin(mlx->ply->ply_angle) * PLAYER_SPEED;
 	}
-	else if (mlx->ply->up_down == -1)  //down
+	else if (mlx->ply->up_down == -1)
 	{
 		move_x = -cos(mlx->ply->ply_angle) * PLAYER_SPEED;
 		move_y = -sin(mlx->ply->ply_angle) * PLAYER_SPEED;

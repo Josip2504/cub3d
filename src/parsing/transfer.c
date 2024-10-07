@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/07 14:19:55 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:56:22 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,19 @@ static void	ft_color(t_map *map, t_data *data)
 
 void	valid_m(t_data *data)
 {
-	int i = 0;
+	int	i;
+	int	j;
 
+	i = 0;
 	while (i < data->height_map)
 	{
-		int j = 0;
+		j = 0;
 		while (j < data->width_map)
 		{
 			if (data->map2d[i][j] == 10)
 			{
-				while(data->map2d[i][j])
-				{ 
+				while (data->map2d[i][j])
+				{
 					data->map2d[i][j] = 0;
 					j++;
 				}
@@ -93,11 +95,9 @@ void	valid_m(t_data *data)
 
 t_data	*transfer_data(t_map *map)
 {
-
 	t_data	*dt;
 
 	dt = malloc(1 * sizeof(t_data));
-	// dt->map2d = malloc(sizeof(map->map2d));
 	dt->map2d = map->map2d;
 	dt->ply_x = map->player_x;
 	dt->ply_y = map->player_y;

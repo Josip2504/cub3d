@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 06:33:59 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/05 19:18:09 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:00:27 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,4 @@ void	player_init(t_mlx *mlx, t_data *data, t_map *map)
 		mlx->ply->ply_angle = WEST;
 	else if (map->player == 'S')
 		mlx->ply->ply_angle = SOUTH;
-	
 }
