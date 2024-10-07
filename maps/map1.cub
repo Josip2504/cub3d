@@ -3,10 +3,10 @@ SO textures/image1.png
 WE textures/image2.png
 EA textures/image3.png
 
-F 220,100,0
+F 220,100,2
 C 225,30,0
 
 
 1111111111
-1W00000001
+1E00000001
 1111111111

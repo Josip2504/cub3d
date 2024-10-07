@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:14:25 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/05 19:04:11 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:18:00 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    leaks(void)
 
 int	main(int argc, char **argv)
 {
-	t_map	map;
+	t_map	*map;
 	t_data	*data;
 
 	atexit(leaks);
@@ -29,12 +29,15 @@ int	main(int argc, char **argv)
 		error_exit_nofree("Error: incorect arguments");
 	if (!correct_arg(argv[1]))
 		error_exit_nofree("Error: Argument must be .cub file");
-	init(&map);
-	read_map(&map, argv);
-	store_map(&map, argv);
-	valid_map(&map);
-	store_player(&map);
-	data = transfer_data(&map);
-	init_game(data, &map);
+	map = (t_map *)malloc(sizeof(t_map));
+	if (map == NULL)
+		error_exit(map, "Error: failed to allocate for map");
+	init(map);
+	read_map(map, argv);
+	store_map(map, argv);
+	valid_map(map);
+	store_player(map);
+	data = transfer_data(map);
+	init_game(data, map);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:26:38 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/05 18:58:38 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:01:04 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	free_map(t_map *map, int i)
 		free(map->map2d);
 	}
 	// if (map->no)
-	// 	free(map->no);
+	// {
+	// 	printf("%s\n", map->no);
+	// }
+		// free(map->no);
 	// if (map->so)
 	// 	free(map->so);
 	// if (map->we)
@@ -38,6 +41,8 @@ void	free_map(t_map *map, int i)
 	// 	free(map->f);
 	// if (map->c)
 	// 	free(map->c);
+	// if (map)
+	// 	free(map);
 }
 
 void	error_exit(t_map *map, char *s)
