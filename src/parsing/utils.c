@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:26:38 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/07 14:59:24 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 20:03:59 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	free_2d(int i, t_map *map)
 {
-	while (i < map->map_height)
+	while (i <= map->map_height)
 	{
 		if (map->map2d[i])
 			free(map->map2d[i]);

@@ -6,16 +6,11 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:14:25 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/07 19:26:07 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/07 20:08:45 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void leaks(void)
-{
-	system("leaks cub3d");
-}
 
 int	main(int argc, char **argv)
 {
