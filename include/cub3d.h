@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/07 19:23:42 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:17:55 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define NORTH 4.71238898038
 # define EAST 0.0
 # define SOUTH 1.57079632679
-# define WEST 6.28318530718
+# define WEST 3.14159265359
 
 # define RED 0
 # define GREEN 1
@@ -154,10 +154,8 @@ unsigned int	get_color(int c);
 double			get_x_offset(mlx_texture_t *texture, t_mlx *mlx);
 int				error(int errnum);
 // utils.c
-void			error_exit(t_map *map, char *s);
 void			my_sscanf(char *str, int *a, int *b, int *c);
-void			line_check(t_map *map, char *line);
-void			free_map(t_map *map, int i);
+void			line_check(t_map *map, char *line, int c, int coma);
 // init.c
 void			init(t_map *map);
 void			check_dest(char *s, t_map *map);
@@ -172,10 +170,12 @@ void			valid_map(t_map *map);
 t_data			*transfer_data(t_map *map);
 char			*trim(t_map *map, char *s, char *dest);
 // utils2.c
-int				ft_isspace(char c);
 void			cop(int i, int j, char *s, char *res);
 void			store_player(t_map *map);
-void			char_check(t_map *map, char *line);
 void			error_exit_nofree(char *s);
+//utils3.c
+int				ft_isspace(char c);
+void			free_map(t_map *map, int i);
+void			error_exit(t_map *map, char *s);
 
 #endif

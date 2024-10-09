@@ -6,54 +6,11 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:26:38 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/07 20:03:59 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:22:07 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-static void	free_2d(int i, t_map *map)
-{
-	while (i <= map->map_height)
-	{
-		if (map->map2d[i])
-			free(map->map2d[i]);
-		i++;
-	}
-	free(map->map2d);
-}
-
-void	free_map(t_map *map, int i)
-{
-	if (map == NULL)
-		return ;
-	if (map->map2d)
-		free_2d(i, map);
-	if (map->no)
-		free(map->no);
-	if (map->so)
-		free(map->so);
-	if (map->we)
-		free(map->we);
-	if (map->ea)
-		free(map->ea);
-	if (map->f)
-		free(map->f);
-	if (map->c)
-		free(map->c);
-	if (map)
-		free(map);
-}
-
-void	error_exit(t_map *map, char *s)
-{
-	int	i;
-
-	i = 0;
-	free_map(map, i);
-	ft_printf("%s\n", s);
-	exit(EXIT_FAILURE);
-}
 
 void	my_sscanf(char *str, int *a, int *b, int *c)
 {
@@ -82,30 +39,63 @@ void	my_sscanf(char *str, int *a, int *b, int *c)
 	*c = numbers[2];
 }
 
-void	line_check(t_map *map, char *line)
+static void	char_check(t_map *map, char *line)
 {
 	int	i;
-	int	c;
 
 	i = 0;
-	c = 0;
+	while (line[i])
+	{
+		if ((line[i] >= '0') && (line[i] <= '9'))
+			i++;
+		else if ((line[i] == ',') || (ft_isspace(line[i])))
+			i++;
+		else
+			error_exit(map, "Error: colors can only contain numbers!");
+	}
+}
+
+static void	err_check(t_map *map, int c, int coma)
+{
+	if (c != 3)
+		error_exit(map, "Error: invalid number of colors");
+	if (coma != 2)
+		error_exit(map, "Error: invalid commas");
+}
+
+static int space_check(int i, char *line)
+{
+	if (ft_isspace(line[i]))
+		{
+			while (ft_isspace(line[i]))
+				i++;
+		}
+	return (i);
+}
+
+void	line_check(t_map *map, char *line, int c, int coma)
+{
+	int	i;
+
+	i = 0;
 	char_check(map, line);
 	while (line[i])
 	{
-		while (ft_isspace(line[i]))
-			i++;
-		if (!ft_isdigit(line[i]) && !ft_isspace(line[i]) && line[i] != ',')
-			error_exit(map, "Error: invalid color");
-		while (ft_isdigit(line[i++]))
+		i = space_check(i, line);
+		if (ft_isdigit(line[i]))
 		{
-			if (!ft_isdigit(line[i]))
+			while (ft_isdigit(line[i++]))
 			{
-				c++;
-				break ;
+				if (!ft_isdigit(line[i]))
+				{
+					c++;
+					break ;
+				}
 			}
 		}
+		if (line[i] == 44)
+			coma++;
 		i++;
 	}
-	if (c != 3)
-		error_exit(map, "Error: invalid number of colors");
+	err_check(map, c, coma);
 }

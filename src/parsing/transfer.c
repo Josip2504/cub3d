@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/07 19:24:23 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:17:30 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,14 @@ char	*trim(t_map *map, char *s, char *dest)
 static void	ft_color(t_map *map, t_data *data)
 {
 	int	i;
+	int c;
+	int coma;
 
 	i = 0;
-	line_check(map, map->f);
-	line_check(map, map->c);
+	c = 0;
+	coma = 0;
+	line_check(map, map->f, c, coma);
+	line_check(map, map->c, c, coma);
 	my_sscanf(map->f, &data->floor[0], &data->floor[1], &data->floor[2]);
 	my_sscanf(map->c, &data->ceil[0], &data->ceil[1], &data->ceil[2]);
 	while (i < 3)
