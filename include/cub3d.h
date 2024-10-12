@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/12 15:11:07 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:08:24 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ unsigned int	get_color(int c);
 double			get_x_offset(mlx_texture_t *texture, t_mlx *mlx);
 int				error(int errnum);
 // utils.c
-void			my_sscanf(char *str, int *a, int *b, int *c);
+int				my_sscanf(char *str, int *a, int *b, int *c);
 void			line_check(t_map *map, char *line, int c, int coma);
 // init.c
 void			init(t_map *map);

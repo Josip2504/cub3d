@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/09 10:17:30 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:09:18 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,22 @@ char	*trim(t_map *map, char *s, char *dest)
 static void	ft_color(t_map *map, t_data *data)
 {
 	int	i;
-	int c;
-	int coma;
+	int	c;
+	int	coma;
+	int	f;
 
 	i = 0;
 	c = 0;
 	coma = 0;
+	f = 0;
 	line_check(map, map->f, c, coma);
 	line_check(map, map->c, c, coma);
-	my_sscanf(map->f, &data->floor[0], &data->floor[1], &data->floor[2]);
-	my_sscanf(map->c, &data->ceil[0], &data->ceil[1], &data->ceil[2]);
+	f = my_sscanf(map->f, &data->floor[0], &data->floor[1], &data->floor[2]);
+	if (f == 1)
+		error_exit(map,"Error: Invalid color");
+	f = my_sscanf(map->c, &data->ceil[0], &data->ceil[1], &data->ceil[2]);
+	if (f == 1)
+		error_exit(map,"Error: Invalid color");
 	while (i < 3)
 	{
 		if (data->ceil[i] > 255 || data->floor[i] > 255)

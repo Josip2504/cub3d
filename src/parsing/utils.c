@@ -6,23 +6,21 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:26:38 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/09 10:22:07 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:08:03 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	my_sscanf(char *str, int *a, int *b, int *c)
+int my_sscanf(char *str, int *a, int *b, int *c)
 {
-	int		numbers[3];
-	int		i;
-	char	*ptr;
+	unsigned long numbers[3];
+	int i = 0;
+	char *ptr = str;
 
-	ptr = str;
-	i = 0;
-	numbers[0] = 0;
-	numbers[1] = 0;
-	numbers[2] = 0;
+	for (int j = 0; j < 3; j++)
+		numbers[j] = 0;
+
 	while (*ptr && i < 3)
 	{
 		while (*ptr && !ft_isdigit(*ptr))
@@ -30,13 +28,16 @@ void	my_sscanf(char *str, int *a, int *b, int *c)
 		while (*ptr && ft_isdigit(*ptr))
 		{
 			numbers[i] = numbers[i] * 10 + (*ptr - '0');
+			if (numbers[i] > 255)
+				return (1);
 			ptr++;
 		}
 		i++;
 	}
-	*a = numbers[0];
-	*b = numbers[1];
-	*c = numbers[2];
+	*a = (int)numbers[0];
+	*b = (int)numbers[1];
+	*c = (int)numbers[2];
+	return (0);
 }
 
 static void	char_check(t_map *map, char *line)
