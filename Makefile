@@ -49,6 +49,7 @@ $(MLXDIR)/build/libmlx42.a:
 		git clone https://github.com/codam-coding-college/MLX42.git --no-checkout $(MLXDIR); \
 		cmake -B $(MLXDIR)/build $(MLXDIR); \
 		cmake --build $(MLXDIR)/build -j4; \
+		cd $(MLXDIR) && git checkout 5d14c832a05a88dd219dd6dc05a5bbf1b577ae0c; \
 		echo "MLX42 successfully built."; \
 	fi
 
