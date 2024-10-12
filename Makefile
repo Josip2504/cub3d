@@ -46,7 +46,7 @@ re: fclean all
 $(MLXDIR)/build/libmlx42.a:
 	@if [ ! -f "$(MLXDIR)/build/libmlx42.a" ]; then \
 		echo "Cloning and building MLX42..."; \
-		git clone https://github.com/codam-coding-college/MLX42.git $(MLXDIR); \
+		git clone https://github.com/codam-coding-college/MLX42.git --no-checkout $(MLXDIR); \
 		cmake -B $(MLXDIR)/build $(MLXDIR); \
 		cmake --build $(MLXDIR)/build -j4; \
 		echo "MLX42 successfully built."; \

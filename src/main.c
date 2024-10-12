@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:14:25 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/07 20:08:45 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/12 15:35:46 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,28 @@ int	main(int argc, char **argv)
 		error_exit(map, "Error: failed to allocate for map");
 	init(map);
 	read_map(map, argv);
+	printf ("h; %d\n", map->map_height);
+	printf ("w; %d\n", map->map_width);
 	store_map(map, argv);
+
+	printf("map;\n");
+	for (int i = 0; i < map->map_height; i++)
+	{
+		for (int j = 0; j < map->map_width; j++)
+			printf("%c", map->map2d[i][j]);
+	}
+
 	valid_map(map);
+// exit(1);
 	store_player(map);
 	data = transfer_data(map);
 	init_game(data, map);
 	return (0);
 }
+
+	// printf("map;\n");
+	// for (int i = 0; i < map->map_height; i++)
+	// {
+	// 	for (int j = 0; j < map->map_width; j++)
+	// 		printf("%c", map->map2d[i][j]);
+	// }

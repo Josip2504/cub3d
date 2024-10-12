@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 13:36:04 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/07 20:02:57 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/12 15:47:25 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@ static void	wloop(t_map *map, char *line, int i, int fd)
 	j = 0;
 	while (line != NULL)
 	{
+		if (line[0] == '\n')
+		{
+			free(line);
+			break ;
+		}
 		map->map2d[i] = malloc((map->map_width + 1) * sizeof(char));
 		if (!map->map2d[i])
 			error_exit(map, "Error: Map alloc fail");
 		j = 0;
 		while (line[j] != '\0')
 		{
-			if (line[j] == 32)
-				map->map2d[i][j] = '1';
-			else
-				map->map2d[i][j] = line[j];
 			map->map2d[i][j] = line[j];
 			j++;
 		}
@@ -66,6 +67,8 @@ void	store_map(t_map *map, char **argv)
 
 static void	ft_if(t_map *map, int i, int j)
 {
+	if (map->map2d[i][0] != 32 && map->map2d[i][0] != '1')
+		error_exit(map, "Error: invalid map");
 	if (map->map2d[i][j] == ' ')
 	{
 		while (j < map->map_width && map->map2d[i][j] == ' ')
@@ -73,9 +76,7 @@ static void	ft_if(t_map *map, int i, int j)
 		if (j < map->map_width && map->map2d[i][j] != '1')
 			error_exit(map, "Error: invalid map");
 	}
-	else if (j == 0 && map->map2d[i][0] != ' ' && map->map2d[i][0] != '1')
-		error_exit(map, "Error: invalid map");
-	if (map->map2d[i][j] == 'N' || map->map2d[i][j] == 'E'
+	else if (map->map2d[i][j] == 'N' || map->map2d[i][j] == 'E'
 		|| map->map2d[i][j] == 'W' || map->map2d[i][j] == 'S')
 		map->player = map->map2d[i][j];
 	if (!(ft_strchr("10NEWS\n", map->map2d[i][j])))
@@ -88,8 +89,9 @@ static void	ft_if(t_map *map, int i, int j)
 
 static void	help(int empty_line_encountered, int j, int i, t_map *map)
 {
-	if (empty_line_encountered)
-		error_exit(map, "Error: invalid map");
+	// if (empty_line_encountered)
+	// 	error_exit(map, "Error: invalid map");
+	(void)empty_line_encountered;
 	while (j < map->map_width)
 	{
 		ft_if(map, i, j);

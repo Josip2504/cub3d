@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:15:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/07 19:21:26 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/12 14:14:20 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,21 @@ static int	store_data(t_map *map, char *line, int flag)
 	return (flag);
 }
 
-static void	map_size(t_map *map, char *line)
+static int	map_size(t_map *map, char *line)
 {
 	int	temp_len;
 
 	temp_len = 0;
 	if (!map->no || !map->ea || !map->we || !map->so || !map->f || !map->c)
 		error_exit(map, "Error: Missing textures or colors");
-	map->map_height++;
+	if (line[0] != '\n')
+		map->map_height++;
+	else if (line[0] == '\n')
+		return (1);
 	temp_len = (int)ft_strlen(line);
 	if (temp_len >= map->map_width)
 		map->map_width = temp_len;
+	return (0);
 }
 
 void	read_map(t_map *map, char **argv)
@@ -85,7 +89,10 @@ void	read_map(t_map *map, char **argv)
 		if (flag == 0)
 			flag = store_data(map, line, flag);
 		if (flag == 1)
-			map_size(map, line);
+		{
+			if (map_size(map, line) == 1)
+				break ;
+		}
 		free(line);
 		line = get_next_line(fd);
 	}

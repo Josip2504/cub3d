@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:09:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/09 10:10:16 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/12 12:22:12 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	error_exit(t_map *map, char *s)
 	int	i;
 
 	i = 0;
-	free_map(map, i);
 	ft_printf("%s\n", s);
+	(void)map;
+	// free_map(map, i);
 	exit(EXIT_FAILURE);
 }
