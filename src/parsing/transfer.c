@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/13 16:43:18 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:19:09 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,20 +101,6 @@ void	valid_m(t_data *data)
 				j++;
 		}
 		i++;
-	}
-}
-
-void	free_color(t_map *map)
-{
-	if (map->f)
-	{
-		free(map->f);
-		map->f = NULL;
-	}
-	if (map->c)
-	{
-		free(map->c);
-		map->c = NULL;
 	}
 }
 

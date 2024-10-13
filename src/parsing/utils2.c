@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:12:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/09 10:11:28 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:19:12 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,19 @@ void	cop(int i, int j, char *s, char *res)
 			res[i] = s[j];
 		i++;
 		j++;
+	}
+}
+
+void	free_color(t_map *map)
+{
+	if (map->f)
+	{
+		free(map->f);
+		map->f = NULL;
+	}
+	if (map->c)
+	{
+		free(map->c);
+		map->c = NULL;
 	}
 }

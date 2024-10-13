@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/13 15:28:30 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:33:38 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void			line_check(t_map *map, char *line, int c, int coma);
 void			init(t_map *map);
 void			check_dest(char *s, t_map *map);
 // read_map.c
-void			read_map(t_map *map, char **argv);
+void			read_map(t_map *map, char **argv, int fd, int flag);
 int				correct_arg(const char *name);
 void			check_wall(t_map *map, int i, int j);
 // store_map.c
@@ -173,6 +173,7 @@ char			*trim(t_map *map, char *s, char *dest);
 void			cop(int i, int j, char *s, char *res);
 void			store_player(t_map *map);
 void			error_exit_nofree(char *s);
+void			free_color(t_map *map);
 //utils3.c
 int				ft_isspace(char c);
 void			free_map(t_map *map, int i);

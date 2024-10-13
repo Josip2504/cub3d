@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:15:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/13 17:43:13 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:33:27 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,9 @@ static void	check_line_more(char *line, t_map *map, int fd)
 		free(line);
 }
 
-void	read_map(t_map *map, char **argv)
+void	read_map(t_map *map, char **argv, int fd, int flag)
 {
-	int		fd;
 	char	*line;
-	int		flag;
 
 	fd = open((argv[1]), O_RDONLY);
 	if (fd < 0)

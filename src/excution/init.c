@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 06:33:59 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/13 16:44:12 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:27:52 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	player_init(t_mlx *mlx, t_data *data, t_map *map)
 	mlx->ply->fov = (FOV * WEST) / 180;
 	if (map->player == 'N')
 		mlx->ply->ply_angle = NORTH;
-	else if (map->player == 'E')
+	if (map->player == 'E')
 		mlx->ply->ply_angle = EAST;
 	else if (map->player == 'W')
 		mlx->ply->ply_angle = WEST;

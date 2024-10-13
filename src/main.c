@@ -6,23 +6,21 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:14:25 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/13 17:47:33 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:33:48 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	leaks()
-{
-	system("leaks cub3d");
-}
-
 int	main(int argc, char **argv)
 {
 	t_map	*map;
 	t_data	*data;
+	int		fd;
+	int		flag;
 
-	// atexit(leaks);
+	fd = 0;
+	flag = 0;
 	if (argc != 2)
 		error_exit_nofree("Error: incorect arguments");
 	if (!correct_arg(argv[1]))
@@ -31,7 +29,7 @@ int	main(int argc, char **argv)
 	if (map == NULL)
 		error_exit(map, "Error: failed to allocate for map");
 	init(map);
-	read_map(map, argv);
+	read_map(map, argv, fd, flag);
 	store_map(map, argv);
 	valid_map(map);
 	store_player(map);
@@ -39,10 +37,3 @@ int	main(int argc, char **argv)
 	init_game(data, map);
 	return (0);
 }
-
-	// printf("map;\n");
-	// for (int i = 0; i < map->map_height; i++)
-	// {
-	// 	for (int j = 0; j < map->map_width; j++)
-	// 		printf("%c", map->map2d[i][j]);
-	// }
