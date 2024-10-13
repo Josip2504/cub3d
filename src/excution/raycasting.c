@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blatifat <blatifat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:38 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/07 19:30:30 by blatifat         ###   ########.fr       */
+/*   Updated: 2024/10/13 15:00:51 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ void	calculate_ray_intersections(t_mlx *mlx, int ray)
 	double	h_inter;
 
 	if (mlx->ray->angle < 0)
-		mlx->ray->angle += 2 * M_PI;
-	if (mlx->ray->angle > 2 * M_PI)
-		mlx->ray->angle -= 2 * M_PI;
+		mlx->ray->angle += 2 * WEST;
+	if (mlx->ray->angle > 2 * WEST)
+		mlx->ray->angle -= 2 * WEST;
 	h_inter = hor_intersection(mlx, mlx->ray->angle);
 	v_inter = ver_intersection(mlx, mlx->ray->angle);
 	if (v_inter <= h_inter)

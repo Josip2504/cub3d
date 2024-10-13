@@ -6,17 +6,23 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:14:25 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/12 17:00:12 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 17:47:33 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	leaks()
+{
+	system("leaks cub3d");
+}
 
 int	main(int argc, char **argv)
 {
 	t_map	*map;
 	t_data	*data;
 
+	// atexit(leaks);
 	if (argc != 2)
 		error_exit_nofree("Error: incorect arguments");
 	if (!correct_arg(argv[1]))

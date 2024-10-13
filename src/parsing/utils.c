@@ -6,21 +6,21 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:26:38 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/12 17:08:03 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/12 18:07:56 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int my_sscanf(char *str, int *a, int *b, int *c)
+int	my_sscanf(char *str, int *a, int *b, int *c)
 {
-	unsigned long numbers[3];
-	int i = 0;
-	char *ptr = str;
+	unsigned long	numbers[3];
+	int				i;
+	char			*ptr;
 
-	for (int j = 0; j < 3; j++)
-		numbers[j] = 0;
-
+	ptr = str;
+	i = 0;
+	i = help(i, numbers);
 	while (*ptr && i < 3)
 	{
 		while (*ptr && !ft_isdigit(*ptr))
@@ -32,7 +32,8 @@ int my_sscanf(char *str, int *a, int *b, int *c)
 				return (1);
 			ptr++;
 		}
-		i++;
+		if (numbers[i] > 0 || (i == 0 && *ptr != '\0'))
+			i++;
 	}
 	*a = (int)numbers[0];
 	*b = (int)numbers[1];
@@ -64,13 +65,13 @@ static void	err_check(t_map *map, int c, int coma)
 		error_exit(map, "Error: invalid commas");
 }
 
-static int space_check(int i, char *line)
+static int	space_check(int i, char *line)
 {
 	if (ft_isspace(line[i]))
-		{
-			while (ft_isspace(line[i]))
-				i++;
-		}
+	{
+		while (ft_isspace(line[i]))
+			i++;
+	}
 	return (i);
 }
 

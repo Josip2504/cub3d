@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:15:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/12 14:14:20 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 17:43:13 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,32 @@ static int	map_size(t_map *map, char *line)
 	return (0);
 }
 
+static void	check_line_more(char *line, t_map *map, int fd)
+{
+	int	contains_non_space;
+	int	i;
+
+	while (line != NULL)
+	{
+		contains_non_space = 0;
+		i = 0;
+		while (line[i] != '\0')
+		{
+			if (!ft_isspace(line[i++]))
+			{
+				contains_non_space = 1;
+				break ;
+			}
+		}
+		if (contains_non_space)
+			error_exit(map, "Error: Invalid map");
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (line)
+		free(line);
+}
+
 void	read_map(t_map *map, char **argv)
 {
 	int		fd;
@@ -91,34 +117,15 @@ void	read_map(t_map *map, char **argv)
 		if (flag == 1)
 		{
 			if (map_size(map, line) == 1)
+			{
+				free(line);
 				break ;
+			}
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (line)
-		free(line);
+	line = get_next_line(fd);
+	check_line_more(line, map, fd);
 	close(fd);
-}
-
-void	check_wall(t_map *map, int i, int j)
-{
-	char	**c;
-
-	c = map->map2d;
-	if (i == 0 && (ft_strchr("0NEWS", c[i][j]) != NULL))
-		error_exit(map, "Error: invalid map");
-	if (i == (map->map_height - 1) && (ft_strchr("0NEWS", c[i][j]) != NULL))
-		error_exit(map, "Error: invalid map");
-	if (i != 0 && i != (map->map_height - 1))
-	{
-		if ((ft_strchr("10NEWS", c[i][j - 1]) == NULL))
-			error_exit(map, "Error: invalid map");
-		if ((ft_strchr("10NEWS", c[i][j + 1]) == NULL))
-			error_exit(map, "Error: invalid map");
-		if ((ft_strchr("10NEWS", c[i - 1][j]) == NULL))
-			error_exit(map, "Error: invalid map");
-		if ((ft_strchr("10NEWS", c[i + 1][j]) == NULL))
-			error_exit(map, "Error: invalid map");
-	}
 }

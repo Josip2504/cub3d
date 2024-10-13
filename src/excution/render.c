@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:12:44 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/07 15:03:31 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 15:01:05 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 mlx_texture_t	*wall_texture(t_mlx *mlx, int flag)
 {
 	if (mlx->ray->angle < 0)
-		mlx->ray->angle += 2 * M_PI;
-	else if (mlx->ray->angle > 2 * M_PI)
-		mlx->ray->angle -= 2 * M_PI;
+		mlx->ray->angle += 2 * WEST;
+	else if (mlx->ray->angle > 2 * WEST)
+		mlx->ray->angle -= 2 * WEST;
 	if (flag == 0)
 	{
-		if (mlx->ray->angle > M_PI / 2 && mlx->ray->angle < 3 * M_PI / 2)
+		if (mlx->ray->angle > WEST / 2 && mlx->ray->angle < 3 * WEST / 2)
 			return (mlx->textur->west);
 		else
 			return (mlx->textur->east);
 	}
 	else
 	{
-		if (mlx->ray->angle > 0 && mlx->ray->angle < M_PI)
+		if (mlx->ray->angle > 0 && mlx->ray->angle < WEST)
 			return (mlx->textur->south);
 		else
 			return (mlx->textur->north);
@@ -97,9 +97,9 @@ void	render_wall_and_floor(t_mlx *mlx, int ray)
 
 	angle_diff = mlx->ray->angle - mlx->ply->ply_angle;
 	if (angle_diff < 0)
-		angle_diff += 2 * M_PI;
-	if (angle_diff > 2 * M_PI)
-		angle_diff -= 2 * M_PI;
+		angle_diff += 2 * WEST;
+	if (angle_diff > 2 * WEST)
+		angle_diff -= 2 * WEST;
 	mlx->ray->distance *= cos(angle_diff);
 	wall_h = (TILE_SIZE / mlx->ray->distance)
 		* ((S_W) / tan(mlx->ply->fov));

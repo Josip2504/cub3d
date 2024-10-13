@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 10:09:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/12 12:22:12 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 17:29:27 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_isspace(char c)
 
 static void	free_2d(int i, t_map *map)
 {
-	while (i <= map->map_height)
+	while (i < map->map_height)
 	{
 		if (map->map2d[i])
 			free(map->map2d[i]);
@@ -32,7 +32,10 @@ static void	free_2d(int i, t_map *map)
 void	free_map(t_map *map, int i)
 {
 	if (map == NULL)
+	{
+		free(map);
 		return ;
+	}
 	if (map->map2d)
 		free_2d(i, map);
 	if (map->no)
@@ -57,7 +60,17 @@ void	error_exit(t_map *map, char *s)
 
 	i = 0;
 	ft_printf("%s\n", s);
-	(void)map;
-	// free_map(map, i);
+	free_map(map, i);
 	exit(EXIT_FAILURE);
+}
+
+int	help(int i, unsigned long numbers[3])
+{
+	while (i < 3)
+	{
+		numbers[i] = 0;
+		i++;
+	}
+	i = 0;
+	return (i);
 }

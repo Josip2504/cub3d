@@ -6,25 +6,25 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:50 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/12 15:31:38 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:31:09 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	player_ratation(t_mlx *mlx)
+void	player_rotation(t_mlx *mlx)
 {
 	if (mlx->ply->rotation == 1)
 	{
 		mlx->ply->ply_angle += ROTATION_SPEED;
-		if (mlx->ply->ply_angle > 2 * M_PI)
-			mlx->ply->ply_angle -= 2 * M_PI;
+		if (mlx->ply->ply_angle > 2 * WEST)
+			mlx->ply->ply_angle -= 2 * WEST;
 	}
 	else if (mlx->ply->rotation == -1)
 	{
 		mlx->ply->ply_angle -= ROTATION_SPEED;
 		if (mlx->ply->ply_angle < 0)
-			mlx->ply->ply_angle += 2 * M_PI;
+			mlx->ply->ply_angle += 2 * WEST;
 	}
 }
 
@@ -76,6 +76,6 @@ void	hook_mvt(t_mlx *mlx)
 
 	move_x = 0;
 	move_y = 0;
-	player_ratation(mlx);
+	player_rotation(mlx);
 	process_player_movement(mlx, move_x, move_y);
 }

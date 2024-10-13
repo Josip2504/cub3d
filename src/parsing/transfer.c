@@ -6,13 +6,13 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:11:14 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/12 17:09:18 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:43:18 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static int	help(char *s, int i)
+static int	help1(char *s, int i)
 {
 	while (s[i++])
 	{
@@ -35,7 +35,7 @@ char	*trim(t_map *map, char *s, char *dest)
 	check_dest(dest, map);
 	while (s[i] == 32 || s[i] == 9)
 		i++;
-	i = help(s, i);
+	i = help1(s, i);
 	while (s[i] == 32 || s[i] == 9)
 		i++;
 	if (s[i] == '\0' || s[i] == '\n')
@@ -66,10 +66,10 @@ static void	ft_color(t_map *map, t_data *data)
 	line_check(map, map->c, c, coma);
 	f = my_sscanf(map->f, &data->floor[0], &data->floor[1], &data->floor[2]);
 	if (f == 1)
-		error_exit(map,"Error: Invalid color");
+		error_exit(map, "Error: Invalid color");
 	f = my_sscanf(map->c, &data->ceil[0], &data->ceil[1], &data->ceil[2]);
 	if (f == 1)
-		error_exit(map,"Error: Invalid color");
+		error_exit(map, "Error: Invalid color");
 	while (i < 3)
 	{
 		if (data->ceil[i] > 255 || data->floor[i] > 255)
@@ -104,6 +104,20 @@ void	valid_m(t_data *data)
 	}
 }
 
+void	free_color(t_map *map)
+{
+	if (map->f)
+	{
+		free(map->f);
+		map->f = NULL;
+	}
+	if (map->c)
+	{
+		free(map->c);
+		map->c = NULL;
+	}
+}
+
 t_data	*transfer_data(t_map *map)
 {
 	t_data	*dt;
@@ -116,5 +130,6 @@ t_data	*transfer_data(t_map *map)
 	dt->width_map = map->map_width - 1;
 	valid_m(dt);
 	ft_color(map, dt);
+	free_color(map);
 	return (dt);
 }

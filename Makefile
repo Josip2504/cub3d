@@ -52,5 +52,7 @@ $(MLXDIR)/build/libmlx42.a:
 		cd $(MLXDIR) && git checkout 5d14c832a05a88dd219dd6dc05a5bbf1b577ae0c; \
 		echo "MLX42 successfully built."; \
 	fi
+	cmake -B $(MLXDIR)/build $(MLXDIR); \
+	cmake --build $(MLXDIR)/build -j4; \
 
 .PHONY: all clean fclean re

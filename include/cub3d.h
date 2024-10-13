@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/12 17:08:24 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/13 15:28:30 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define S_W 1900
 # define S_H 1000
-# define TILE_SIZE 15
+# define TILE_SIZE 42
 # define FOV 60
 # define ROTATION_SPEED 0.045
 # define PLAYER_SPEED 4
@@ -177,5 +177,6 @@ void			error_exit_nofree(char *s);
 int				ft_isspace(char c);
 void			free_map(t_map *map, int i);
 void			error_exit(t_map *map, char *s);
+int				help(int i, unsigned long numbers[3]);
 
 #endif
