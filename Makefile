@@ -1,6 +1,6 @@
-NAME = cub3d
+NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
 SRC_DIR = src
 OBJ_DIR = obj
 
@@ -19,7 +19,7 @@ MLX = -L$(MLXDIR)/build -lMLX42 -lglfw -lm
 all: $(MLXDIR)/build/libmlx42.a $(NAME)
 
 
-$(NAME): $(OBJ) libft/libft.a #$(MLXDIR)/build/libmlx42.a
+$(NAME): $(OBJ) libft/libft.a
 	@$(CC) $(OBJ) $(LIBFT_H) $(MLX) -o $(NAME)
 	@echo "Compiling $(NAME) completed successfully."
 

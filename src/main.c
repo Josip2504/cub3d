@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:14:25 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/16 11:33:19 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/16 22:23:10 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ int	main(int argc, char **argv)
 	store_player(map);
 	data = transfer_data(map);
 	init_game(data, map);
+	free_map(map, 0);
+	ft_printf("Game closed\n");
 	return (0);
 }

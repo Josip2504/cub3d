@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 22:52:12 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/13 16:48:01 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/16 22:21:31 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void	exit_game(t_mlx *mlx)
 	mlx_delete_image(mlx->mlx_ptr, mlx->imgage);
 	mlx_close_window(mlx->mlx_ptr);
 	mlx_terminate(mlx->mlx_ptr);
-	printf("Game closed\n");
+	ft_printf("Game closed\n");
 	exit(0);
 }

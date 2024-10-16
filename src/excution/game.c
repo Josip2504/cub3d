@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:12:18 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/04 19:59:50 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/16 22:22:32 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_game(t_data *data, t_map *map)
 	mlx = malloc(sizeof(t_mlx));
 	if (!mlx)
 	{
-		printf("Memory allocation failed\n");
+		ft_printf("Memory allocation failed\n");
 		return ;
 	}
 	initiation(mlx);
@@ -45,7 +45,7 @@ void	init_game(t_data *data, t_map *map)
 	mlx->mlx_ptr = mlx_init(S_W, S_H, "Cub3D", true);
 	if (mlx->mlx_ptr == NULL)
 	{
-		printf("Failed to initialize MLX\n");
+		ft_printf("Failed to initialize MLX\n");
 		return ;
 	}
 	load_texture(mlx, map);

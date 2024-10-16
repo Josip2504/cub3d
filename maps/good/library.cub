@@ -1,5 +1,5 @@
-F 0,99,25
-C 171,154,137
+F 0, 0,255
+C 0, 150,255
 
 NO textures/image.png
 SO textures/image1.png

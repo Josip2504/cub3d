@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 06:33:59 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/16 11:50:40 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/16 22:22:29 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	game_loop(void *param)
 	mlx->imgage = mlx_new_image(mlx->mlx_ptr, S_W, S_H);
 	if (mlx->imgage == NULL)
 	{
-		printf("Failed to create a new image\n");
+		ft_printf("Failed to create a new image\n");
 		return ;
 	}
 	hook_mvt(mlx);
