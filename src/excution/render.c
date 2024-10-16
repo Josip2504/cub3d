@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: blatifat <blatifat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:12:44 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/13 15:01:05 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/14 02:26:15 by blatifat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 mlx_texture_t	*wall_texture(t_mlx *mlx, int flag)
 {
 	if (mlx->ray->angle < 0)
-		mlx->ray->angle += 2 * WEST;
-	else if (mlx->ray->angle > 2 * WEST)
-		mlx->ray->angle -= 2 * WEST;
+		mlx->ray->angle += 2 * M_PI;
+	if (mlx->ray->angle > 2 * M_PI)
+		mlx->ray->angle -= 2 * M_PI;
 	if (flag == 0)
 	{
-		if (mlx->ray->angle > WEST / 2 && mlx->ray->angle < 3 * WEST / 2)
-			return (mlx->textur->west);
-		else
+		if (mlx->ray->angle > M_PI / 2 && mlx->ray->angle < 3 * M_PI / 2)
 			return (mlx->textur->east);
+		else
+			return (mlx->textur->west);
 	}
 	else
 	{
-		if (mlx->ray->angle > 0 && mlx->ray->angle < WEST)
+		if (mlx->ray->angle > 0 && mlx->ray->angle < M_PI)
 			return (mlx->textur->south);
 		else
 			return (mlx->textur->north);
@@ -96,10 +96,10 @@ void	render_wall_and_floor(t_mlx *mlx, int ray)
 	double	angle_diff;
 
 	angle_diff = mlx->ray->angle - mlx->ply->ply_angle;
-	if (angle_diff < 0)
-		angle_diff += 2 * WEST;
-	if (angle_diff > 2 * WEST)
-		angle_diff -= 2 * WEST;
+	if (mlx->ray->angle < 0)
+		mlx->ray->angle += 2 * M_PI;
+	if (mlx->ray->angle > 2 * M_PI)
+		mlx->ray->angle -= 2 * M_PI;
 	mlx->ray->distance *= cos(angle_diff);
 	wall_h = (TILE_SIZE / mlx->ray->distance)
 		* ((S_W) / tan(mlx->ply->fov));

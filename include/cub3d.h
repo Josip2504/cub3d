@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/13 19:33:38 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/16 11:27:02 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,14 @@
 # define INVALID_MAP 6
 # define LOAD_TEXTURES 7
 
-# define NORTH 4.71238898038
+/* # define NORTH 4.71238898038
 # define EAST 0.0
 # define SOUTH 1.57079632679
-# define WEST 3.14159265359
+# define WEST 3.14159265359 */
 
-# define RED 0
-# define GREEN 1
-# define BLUE 2
-
+#define RED 0
+#define GREEN 1
+#define BLUE 2
 typedef struct s_player
 {
 	int		player_x;

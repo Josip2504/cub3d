@@ -6,7 +6,7 @@
 /*   By: blatifat <blatifat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 01:03:15 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/04 01:13:36 by blatifat         ###   ########.fr       */
+/*   Updated: 2024/10/13 22:07:08 by blatifat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double	get_x_offset(mlx_texture_t *texture, t_mlx *mlx)
 
 uint32_t	rgb_color(int r, int g, int b, int a)
 {
-	return (r << 24 | g << 16 | b << 8 | a << 0);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
 unsigned int	get_color(int c)

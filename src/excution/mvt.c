@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:50 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/13 19:32:27 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/16 11:26:03 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 void	player_rotation(t_mlx *mlx)
 {
+	// printf("Before rotation: angle = %f\n", mlx->ply->ply_angle);
 	if (mlx->ply->rotation == 1)
 	{
 		mlx->ply->ply_angle += ROTATION_SPEED;
-		if (mlx->ply->ply_angle > 2 * WEST)
-			mlx->ply->ply_angle -= 2 * WEST;
+		if (mlx->ply->ply_angle > 2  * M_PI)
+			mlx->ply->ply_angle -= 2 * M_PI;
 	}
 	else if (mlx->ply->rotation == -1)
 	{
 		mlx->ply->ply_angle -= ROTATION_SPEED;
 		if (mlx->ply->ply_angle < 0)
-			mlx->ply->ply_angle += 2 * WEST;
+			mlx->ply->ply_angle += 2 * M_PI;
 	}
+	// printf("After rotation: angle = %f\n", mlx->ply->ply_angle);
 }
 
 void	move_player(t_mlx *mlx, double move_x, double move_y)
@@ -44,9 +46,9 @@ void	move_player(t_mlx *mlx, double move_x, double move_y)
 	}
 }
 
-void	process_player_movement(t_mlx *mlx, double move_x, double move_y)
+void	process_player_movement(t_mlx *mlx, int move_x, int move_y)
 {
-	if (mlx->ply->up_down == 1)
+	if (mlx->ply->up_down == 1)			// 0 to 1 not moving, but 0 to -1 moving and adding that small movment overtime
 	{
 		move_x = cos(mlx->ply->ply_angle) * PLAYER_SPEED;
 		move_y = sin(mlx->ply->ply_angle) * PLAYER_SPEED;
@@ -66,13 +68,15 @@ void	process_player_movement(t_mlx *mlx, double move_x, double move_y)
 		move_x = -cos(mlx->ply->ply_angle) * PLAYER_SPEED;
 		move_y = -sin(mlx->ply->ply_angle) * PLAYER_SPEED;
 	}
+	printf("%d, %d\n", move_x, move_y);
 	move_player(mlx, move_x, move_y);
 }
 
+
 void	hook_mvt(t_mlx *mlx)
 {
-	double	move_x;
-	double	move_y;
+	int	move_x;
+	int	move_y;
 
 	move_x = 0;
 	move_y = 0;

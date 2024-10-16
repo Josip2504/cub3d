@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 06:33:59 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/13 19:27:52 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/16 11:29:58 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,16 @@ void	player_init(t_mlx *mlx, t_data *data, t_map *map)
 {
 	mlx->ply->player_x = (data->ply_y * TILE_SIZE) + (TILE_SIZE / 2);
 	mlx->ply->player_y = (data->ply_x * TILE_SIZE) + (TILE_SIZE / 2);
-	mlx->ply->fov = (FOV * WEST) / 180;
+	mlx->ply->fov = (FOV * M_PI) / 180;
+	mlx->ply->ply_angle = M_PI;
 	if (map->player == 'N')
-		mlx->ply->ply_angle = NORTH;
-	if (map->player == 'E')
-		mlx->ply->ply_angle = EAST;
+		mlx->ply->ply_angle = 3 * M_PI / 2;
+	else if (map->player == 'E')
+		mlx->ply->ply_angle = 0;
 	else if (map->player == 'W')
-		mlx->ply->ply_angle = WEST;
+		mlx->ply->ply_angle = M_PI;
 	else if (map->player == 'S')
-		mlx->ply->ply_angle = SOUTH;
+		mlx->ply->ply_angle = M_PI / 2;
+
 }
+

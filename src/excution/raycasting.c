@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:38 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/13 15:00:51 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:08:00 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,15 @@ void	calculate_ray_intersections(t_mlx *mlx, int ray)
 	double	v_inter;
 	double	h_inter;
 
+	// if (mlx->ray->angle < 0)
+	// 	mlx->ray->angle += 2 * WEST;
+	// if (mlx->ray->angle > 2 * WEST)
+	// 	mlx->ray->angle -= 2 * WEST;
+	const double TWO_PI = 2 * M_PI; // change here 
 	if (mlx->ray->angle < 0)
-		mlx->ray->angle += 2 * WEST;
-	if (mlx->ray->angle > 2 * WEST)
-		mlx->ray->angle -= 2 * WEST;
+		mlx->ray->angle += TWO_PI;
+	if (mlx->ray->angle > TWO_PI)
+		mlx->ray->angle -= TWO_PI;
 	h_inter = hor_intersection(mlx, mlx->ray->angle);
 	v_inter = ver_intersection(mlx, mlx->ray->angle);
 	if (v_inter <= h_inter)
