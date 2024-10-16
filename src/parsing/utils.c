@@ -3,76 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blatifat <blatifat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:26:38 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/14 04:02:20 by blatifat         ###   ########.fr       */
+/*   Updated: 2024/10/16 11:54:01 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-// int	my_sscanf(char *str, int *a, int *b, int *c)
-// {
-// 	unsigned long	numbers[3];
-// 	int				i;
-// 	char			*ptr;
-
-// 	ptr = str;
-// 	i = 0;
-// 	i = help(i, numbers);
-// 	while (*ptr && i < 3)
-// 	{
-// 		while (*ptr && !ft_isdigit(*ptr))
-// 			ptr++;
-// 		while (*ptr && ft_isdigit(*ptr))
-// 		{
-// 			numbers[i] = numbers[i] * 10 + (*ptr - '0');
-// 			if (numbers[i] > 255)
-// 				return (1);
-// 			ptr++;
-// 		}
-// 		if (numbers[i] > 0 || (i == 0 && *ptr != '\0'))
-// 			i++;
-// 	}
-// 	*a = (int)numbers[0];
-// 	*b = (int)numbers[1];
-// 	*c = (int)numbers[2];
-// 	return (0);
-// }
-
-// int	my_sscanf(char *str, int *a, int *b, int *c)
-// {
-// 	unsigned long	numbers[3] = {0, 0, 0};
-// 	int				i;
-// 	char			*ptr;
-
-// 	i = help(i, numbers);
-// 	ptr = str;
-// 	numbers[3] = {0, 0, 0};
-// 	while (*ptr && i < 3)
-// 	{
-// 		while (*ptr && (*ptr == ' ' || *ptr == ','))
-// 			ptr++;
-// 		while (*ptr && ft_isdigit(*ptr))
-// 		{
-// 			numbers[i] = numbers[i] * 10 + (*ptr - '0');
-// 			if (numbers[i] > 255)
-// 				return (1);
-// 			ptr++;
-// 		}
-// 		if (*ptr == ',' || *ptr == ' ' || *ptr == '\0')
-// 			i++;
-// 		else if (*ptr && !ft_isdigit(*ptr))
-// 			return (1);
-// 	}
-// 	if (i != 3)
-// 		return (1);
-// 	*a = (int)numbers[0];
-// 	*b = (int)numbers[1];
-// 	*c = (int)numbers[2];
-// 	return (0);
-// }
 
 int	parse_numbers(char *str, unsigned long numbers[3])
 {
@@ -102,9 +40,12 @@ int	parse_numbers(char *str, unsigned long numbers[3])
 
 int	my_sscanf(char *str, int *a, int *b, int *c)
 {
-	unsigned long	numbers[3] = {0, 0, 0};
+	unsigned long	numbers[3];
 	int				result;
 
+	numbers[0] = 0;
+	numbers[1] = 0;
+	numbers[2] = 0;
 	result = parse_numbers(str, numbers);
 	if (result != 3)
 		return (1);
@@ -136,16 +77,6 @@ static void	err_check(t_map *map, int c, int coma)
 		error_exit(map, "Error: invalid number of colors");
 	if (coma != 2)
 		error_exit(map, "Error: invalid commas");
-}
-
-static int	space_check(int i, char *line)
-{
-	if (ft_isspace(line[i]))
-	{
-		while (ft_isspace(line[i]))
-			i++;
-	}
-	return (i);
 }
 
 void	line_check(t_map *map, char *line, int c, int coma)

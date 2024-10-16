@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:34:42 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/16 11:27:02 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/16 11:52:47 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,10 @@
 # define INVALID_MAP 6
 # define LOAD_TEXTURES 7
 
-/* # define NORTH 4.71238898038
-# define EAST 0.0
-# define SOUTH 1.57079632679
-# define WEST 3.14159265359 */
+# define RED 0
+# define GREEN 1
+# define BLUE 2
 
-#define RED 0
-#define GREEN 1
-#define BLUE 2
 typedef struct s_player
 {
 	int		player_x;
@@ -173,6 +169,7 @@ void			cop(int i, int j, char *s, char *res);
 void			store_player(t_map *map);
 void			error_exit_nofree(char *s);
 void			free_color(t_map *map);
+int				space_check(int i, char *line);
 //utils3.c
 int				ft_isspace(char c);
 void			free_map(t_map *map, int i);

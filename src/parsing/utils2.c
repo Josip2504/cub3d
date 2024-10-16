@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:12:57 by jsamardz          #+#    #+#             */
-/*   Updated: 2024/10/13 19:19:12 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/16 11:52:22 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,14 @@ void	free_color(t_map *map)
 		free(map->c);
 		map->c = NULL;
 	}
+}
+
+int	space_check(int i, char *line)
+{
+	if (ft_isspace(line[i]))
+	{
+		while (ft_isspace(line[i]))
+			i++;
+	}
+	return (i);
 }
