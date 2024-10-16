@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:38 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/16 13:46:31 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/16 21:09:29 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ float	ver_intersection(t_mlx *mlx, float angle)
 
 	x_step = TILE_SIZE;
 	y_step = TILE_SIZE * tan(angle);
-	v_x = (int)(mlx->ply->player_x / TILE_SIZE) * TILE_SIZE - 0.1; 			// -0.1
+	v_x = (int)(mlx->ply->player_x / TILE_SIZE) * TILE_SIZE - 0.1;
 	pixel = evaluate_intersection(angle, &v_x, &x_step, 0);
 	v_y = mlx->ply->player_y + (v_x - mlx->ply->player_x) * tan(angle) + 0.1;
 	if ((verify_circle(angle, 'x') && y_step < 0)
@@ -67,7 +67,7 @@ float	hor_intersection(t_mlx *mlx, float angle)
 
 	y_step = TILE_SIZE;
 	x_step = TILE_SIZE / tan(angle);
-	h_y = floor(mlx->ply->player_y / TILE_SIZE) * TILE_SIZE - 0.1;			// -0.1
+	h_y = floor(mlx->ply->player_y / TILE_SIZE) * TILE_SIZE - 0.1;
 	pixel = evaluate_intersection(angle, &h_y, &y_step, 1);
 	h_x = mlx->ply->player_x + (h_y - mlx->ply->player_y) / tan(angle) + 0.1;
 	if ((verify_circle(angle, 'y') && x_step > 0) || \

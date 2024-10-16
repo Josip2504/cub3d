@@ -6,7 +6,7 @@
 /*   By: jsamardz <jsamardz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 05:11:50 by blatifat          #+#    #+#             */
-/*   Updated: 2024/10/16 12:36:18 by jsamardz         ###   ########.fr       */
+/*   Updated: 2024/10/16 21:02:03 by jsamardz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	player_rotation(t_mlx *mlx)
 	}
 }
 
-void	move_player(t_mlx *mlx, double move_x, double move_y)
+void	move_player(t_mlx *mlx, int move_x, int move_y)
 {
 	int		map_grid_x;
 	int		map_grid_y;
